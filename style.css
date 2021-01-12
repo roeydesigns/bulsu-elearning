@@ -1,0 +1,15 @@
+.navbar-brand {
+    font-size: 1.5rem;
+    line-height: 2.1;
+}
+
+.nav-item.login-nav {
+    margin-right: 20px !important;
+    margin-left: 20px !important;
+}
+
+@media (max-width: 1200px) {
+    .home-nav-login {
+      display: none;
+    }
+  }

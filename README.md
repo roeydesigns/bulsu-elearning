@@ -1,4 +1,4 @@
-**E-Learning Management System Based on AdminLTE Template**
+# E-Learning Management System Based on AdminLTE Template
 
 **AdminLTE** is a fully responsive administration template. Based on **[Bootstrap 4.5](https://getbootstrap.com/)** framework and also the JS/jQuery plugin.
 Highly customizable and easy to use. Fits many screen resolutions from small mobile devices to large desktops.

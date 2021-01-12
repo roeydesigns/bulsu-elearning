@@ -25,5 +25,7 @@
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+  <!-- style.css -->
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition <?php if(basename($_SERVER["PHP_SELF"]) == "index.php") echo "layout-top-nav"; ?>">
