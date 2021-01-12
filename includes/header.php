@@ -28,4 +28,4 @@
   <!-- style.css -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="hold-transition <?php if(basename($_SERVER["PHP_SELF"]) == "index.php") echo "layout-top-nav"; ?>">
+<body class="hold-transition <?php if(basename($_SERVER["PHP_SELF"]) == "index.php" || basename($_SERVER["PHP_SELF"]) == "register.php" ) echo "layout-top-nav"; ?>">

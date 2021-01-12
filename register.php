@@ -92,10 +92,32 @@
           <div class="col-lg-4">
             <div class="card">
               <div class="card-body login-card-body">
-                <h1 class="text-center">Login</h1>
+                
+                <div class="alert alert-warning register-alert mt-2">
+                  <i class="icon fas fa-exclamation-triangle"></i> We are implementing one account per user.
+                </div>
+                <h3 class="text-center p-2">Create an Account</h3>
 
                 <form action="#" method="post">
-                  <div class="input-group mb-3">
+                <div class="input-group my-3">
+                    <input type="text" class="form-control" placeholder="Student No.">
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span class="fas fa-hashtag"></span>
+                      </div>
+                    </div>
+                 </div>
+
+                 <div class="input-group my-3">
+                    <input type="text" class="form-control" placeholder="Username">
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span class="fas fa-user"></span>
+                      </div>
+                    </div>
+                 </div>
+
+                 <div class="input-group mb-3">
                     <input type="email" class="form-control" placeholder="Email">
                     <div class="input-group-append">
                       <div class="input-group-text">
@@ -103,6 +125,7 @@
                       </div>
                     </div>
                   </div>
+ 
                   <div class="input-group mb-3">
                     <input type="password" class="form-control" placeholder="Password">
                     <div class="input-group-append">
@@ -114,21 +137,19 @@
                   <div class="row">
                   <div class="col-12">
                     <div class="icheck-primary">
-                      <input type="checkbox" id="remember">
-                      <label for="remember">
-                        Remember Me
+                      <input type="checkbox" id="agree">
+                      <label for="agree">
+                        I agree with the <a href="#">Terms and Conditions</a>
                       </label>
                     </div>
                   </div>
-                    <div class="col-12 pt-2">
-                      <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    <div class="col-12 pt-3">
+                      <button type="submit" class="btn btn-danger btn-block">Register</button>
                     </div>
-                    
-
                   </div>
                 </form>
                 <p class="text-center my-2">- OR -</p>
-                <a href="register.php" class="btn btn-block btn-danger">Register</a>
+                <a href="index.php" class="btn btn-block btn-primary">Login</a>
                 <p class="mb-1 text-center pt-3">
                     <a href="#">I forgot my password</a>
                 </p>

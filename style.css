@@ -3,9 +3,12 @@
     line-height: 2.1;
 }
 
-.nav-item.login-nav {
-    margin-right: 20px !important;
+.home-nav-login .nav-create-account {
     margin-left: 20px !important;
+}
+
+.register-alert {
+    font-size: 14px;
 }
 
 @media (max-width: 1200px) {
