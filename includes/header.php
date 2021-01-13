@@ -3,7 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>E-LEARNING MANAGEMENT SYSTEM</title>
+  <title>
+  <?php
+  if(basename($_SERVER["PHP_SELF"]) == "index.php" ){
+    echo "E-LEARNING MANAGEMENT SYSTEM";
+  }
+
+  else if(basename($_SERVER["PHP_SELF"]) == "forgot.php" ){
+    echo "Forgot Password";
+  }
+
+  else if(basename($_SERVER["PHP_SELF"]) == "register.php" ){
+    echo "Register New Account";
+  }
+    
+    ?>
+    
+  
+  </title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -28,4 +45,4 @@
   <!-- style.css -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="hold-transition <?php if(basename($_SERVER["PHP_SELF"]) == "index.php" || basename($_SERVER["PHP_SELF"]) == "register.php" ) echo "layout-top-nav"; ?>">
+<body class="hold-transition layout-top-nav">

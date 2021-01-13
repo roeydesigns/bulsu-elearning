@@ -5,7 +5,7 @@
   <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
     <div class="container">
       <a href="index.php" class="navbar-brand">
-        <img src="images/logo-login.png" alt="AdminLTE Logo" width="60" height="60">
+        <img src="images/logo-login.png" alt="Logo" width="60" height="60">
         <span class="brand-text font-weight-light"> E-Learning Management System</span>
       </a>
 
@@ -38,7 +38,7 @@
       <!-- Right navbar links -->
       <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto home-nav-login">
         <li class="nav-create-account">
-          <a class="btn btn-outline-danger" data-toggle="dropdown" href="#">Create an Account</a>
+          <a class="btn btn-outline-danger" href="register.php">Create an Account</a>
         </li>
       </ul>
 
@@ -94,7 +94,7 @@
               <div class="card-body login-card-body">
                 <h1 class="text-center">Login</h1>
 
-                <form action="#" method="post">
+                <form action="admin" method="post">
                   <div class="input-group mb-3">
                     <input type="email" class="form-control" placeholder="Email">
                     <div class="input-group-append">
@@ -130,7 +130,7 @@
                 <p class="text-center my-2">- OR -</p>
                 <a href="register.php" class="btn btn-block btn-danger">Register</a>
                 <p class="mb-1 text-center pt-3">
-                    <a href="#">I forgot my password</a>
+                    <a href="forgot.php">I forgot my password</a>
                 </p>
 
           </div>
@@ -144,12 +144,13 @@
   <!-- /.content-wrapper -->
 
 
-  <!-- Main Footer -->
-  <footer class="main-footer text-center">
-    <!-- Default to the left -->
-    <strong>Copyright &copy; 2021. All rights reserved.
-  </footer>
+
 </div>
 <!-- ./wrapper -->
 </div>
+
+<!-- Main Footer -->
+<footer class="main-footer text-center">
+  <strong>Copyright &copy; 2021. All rights reserved.
+</footer>
 <?php require_once 'includes/footer.php'; ?>
