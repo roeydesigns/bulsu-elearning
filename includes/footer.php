@@ -1,4 +1,8 @@
 
+<!-- Main Footer -->
+<footer class="main-footer text-center">
+  <strong>Copyright &copy; 2021 <a href="index.php">BulSU iLearn</a>. All rights reserved. 
+</footer>
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->

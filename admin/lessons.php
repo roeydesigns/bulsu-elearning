@@ -6,21 +6,18 @@
       <!-- Default box -->
       <div class="card">
         <div class="card-header">
-          <h1 class="card-title">Lessons List</h1>
+          <p class="card-title">Lessons</p>
 
           <div class="card-tools">
-          <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-plus">
-                              </i>
-                              Add New
-                          </a>
+          <a class="btn btn-primary btn-sm" href="lessons-add.php">
+            <i class="fas fa-plus"></i>Add New</a>
           </div>
         </div>
         <div class="card-body p-0">
           <table class="table table-striped projects">
               <thead>
                   <tr>
-                      <th style="width: 5%">
+                      <th style="width: 3%">
                           #
                       </th>
                       <th style="width: 25%">
@@ -32,8 +29,8 @@
                       <th style="width: 10%" class="text-center">
                           Status
                       </th>
-                      <th style="width: 20%"  class="text-center"> 
-                          Operation
+                      <th style="width: 25%"  class="text-center"> 
+                          Actions
                       </th>
                   </tr>
               </thead>
@@ -44,7 +41,7 @@
                       </td>
                       <td>
                           <a>
-                              Lessons 1: Programming 101
+                              Lesson 1: Mysql Database
                           </a>
                           <br/>
                           <small>
@@ -52,8 +49,7 @@
                           </small>
                       </td>
                       <td>
-                      <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat,
-                         accumsan id imperdiet et, porttitor at sem. </p>
+                      <p class="m-0">MySQL is a freely available open source Relational Database Management System (RDBMS) that uses Structured Query ... </p>
                       </td>
                       <td class="project-state">
                           <span class="badge badge-success">Published</span>
@@ -64,7 +60,7 @@
                               </i>
                               View
                           </a>
-                          <a class="btn btn-info btn-sm" href="#">
+                          <a class="btn btn-info btn-sm" href="lessons-edit.php">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Edit
@@ -102,7 +98,7 @@
                               </i>
                               View
                           </a>
-                          <a class="btn btn-info btn-sm" href="#">
+                          <a class="btn btn-info btn-sm" href="lessons-edit.php">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Edit
@@ -140,7 +136,7 @@
                               </i>
                               View
                           </a>
-                          <a class="btn btn-info btn-sm" href="#">
+                          <a class="btn btn-info btn-sm" href="lessons-edit.php">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Edit
@@ -179,7 +175,7 @@
                               </i>
                               View
                           </a>
-                          <a class="btn btn-info btn-sm" href="#">
+                          <a class="btn btn-info btn-sm" href="lessons-edit.php">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Edit
@@ -217,7 +213,7 @@
                               </i>
                               View
                           </a>
-                          <a class="btn btn-info btn-sm" href="#">
+                          <a class="btn btn-info btn-sm" href="lessons-edit.php">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Edit

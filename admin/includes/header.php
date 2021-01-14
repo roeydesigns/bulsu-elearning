@@ -3,30 +3,42 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin | E-LEARNING MANAGEMENT SYSTEM</title>
+  <title>Admin | BulSU iLearn</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="../https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- JQVMap -->
   <link rel="stylesheet" href="../plugins/jqvmap/jqvmap.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="../plugins/summernote/summernote-bs4.min.css">
   <!-- style.css -->
   <link rel="stylesheet" href="../style.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Bootstrap Color Picker -->
+  <link rel="stylesheet" href="../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="../plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <!-- Bootstrap4 Duallistbox -->
+  <link rel="stylesheet" href="../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+  <!-- BS Stepper -->
+  <link rel="stylesheet" href="../plugins/bs-stepper/css/bs-stepper.min.css">
+  <!-- dropzonejs -->
+  <link rel="stylesheet" href="../plugins/dropzone/min/dropzone.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -102,7 +114,7 @@
   <!-- Brand Logo -->
   <a href="index.php" class="brand-link">
     <img src="../images/logo-login.png" alt="Logo" class="brand-image img-circle elevation-3">
-    <span class="brand-text font-weight-light">E-Learning System</span>
+    <span class="brand-text font-weight-light"> BulSU iLearn</span>
   </a>
 
 
@@ -148,7 +160,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="lessons.php" class="nav-link <?php if(basename($_SERVER["PHP_SELF"]) == "lessons.php" ) echo "active"; ?>">
+          <a href="lessons.php" class="nav-link <?php if(strpos(basename($_SERVER["PHP_SELF"]), 'lessons') !== false ) echo "active"; ?>">
             <i class="nav-icon fas fa-book"></i>
             <p>Lessons</p>
           </a>
@@ -192,10 +204,9 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0"><?php
-            
             if(basename($_SERVER["PHP_SELF"]) == "index.php" ) echo "Dashboard";
             else if(basename($_SERVER["PHP_SELF"]) == "profile.php" ) echo "Profile";
-            else if(basename($_SERVER["PHP_SELF"]) == "lessons.php" ) echo "Lessons";
+            else if(strpos(basename($_SERVER["PHP_SELF"]), 'lessons') !== false) echo "Lessons";
             else if(basename($_SERVER["PHP_SELF"]) == "students.php" ) echo "Students' Lists";
             else if(basename($_SERVER["PHP_SELF"]) == "records.php" ) echo "Records";
             else if(basename($_SERVER["PHP_SELF"]) == "calendar.php" ) echo "Calendar";
@@ -209,7 +220,7 @@
             
             if(basename($_SERVER["PHP_SELF"]) == "index.php" ) echo "Dashboard";
             else if(basename($_SERVER["PHP_SELF"]) == "profile.php" ) echo "Profile";
-            else if(basename($_SERVER["PHP_SELF"]) == "lessons.php" ) echo "Lessons";
+            else if(strpos(basename($_SERVER["PHP_SELF"]), 'lessons') !== false) echo "Lessons";
             else if(basename($_SERVER["PHP_SELF"]) == "students.php" ) echo "Students' Lists";
             else if(basename($_SERVER["PHP_SELF"]) == "records.php" ) echo "Records";
             else if(basename($_SERVER["PHP_SELF"]) == "calendar.php" ) echo "Calendar";
