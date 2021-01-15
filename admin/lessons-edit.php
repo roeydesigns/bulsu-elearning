@@ -12,14 +12,14 @@
           </div>
           <div class="card-body">
              <div class="row">
-                 <div class="col-md-8">
+                 <div class="col-md-8 col-12">
                     <div class="form-group">
                         <label for="inputLessonTitle">Lesson Title</label>
                           <input type="email" class="form-control" id="inputLessonTitle" placeholder="Lesson Title" value="Lesson 1: Mysql Database"> 
                     </div>
                  </div>
 
-                   <div class="col-md-4">
+                   <div class="col-md-4 col-12">
                       <div class="form-group">
                         <label>Status</label>
                         <select class="form-control select2">
@@ -28,7 +28,17 @@
                         </select>
                      </div>
                    </div>
-                   <div class="col-md-12">
+                   <div class="col-md-4 col-12 pb-3">
+                    <label>Lesson Image</label>
+                     <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="exampleInputFile">
+                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                      </div>
+                  </div>
+                  <div class="col-md-4 col-12">
+                  <img src="https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?cs=srgb&dl=pexels-kevin-ku-577585.jpg&fm=jpg" style="height: 150px;">
+                  </div>
+                   <div class="col-md-12 col-12">
                      <div class="form-group">
                         <label>Description</label>
                         <textarea class="form-control" rows="3" placeholder="Description">MySQL is a freely available open source Relational Database Management System (RDBMS) that uses Structured Query Language (SQL). SQL is the most popular language for adding, accessing and managing content in a database.</textarea>
@@ -40,7 +50,7 @@
         <!-- /.card -->
         <div class="card-footer clearfix">
           <div class="float-right">
-            <a class="btn btn-success" href="#">Submit</a>
+            <a class="btn btn-success" href="lessons.php">Change</a>
           </div>
         </div>
     </div>
@@ -51,7 +61,7 @@
                 title="List of Lessons Chapters, Quizes and Exams. Here you can arrange items that will be part of the Lesson."></i></a></p>
 
                 <div class="card-tools">
-          <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-plus"></i> Add New Chapter</a>
+          <a class="btn btn-primary btn-sm" href="lessons-add-chapter.php"><i class="fas fa-plus"></i> Add New Chapter</a>
           <a class="btn btn-warning btn-sm" href="#"><i class="fas fa-plus"></i> Add New Quiz/Exam</a>
           </div>
               </div>
@@ -72,8 +82,8 @@
                       <td>Chapter 1: Introduction</td>
                       <td>Chapter</td>
                       <td>
-                      <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-folder"></i> View</a>
-                          <a class="btn btn-info btn-sm" href="#"><i class="fas fa-pencil-alt"></i> Edit</a>
+                      <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-eye"></i> View</a>
+                          <a class="btn btn-info btn-sm" href="lessons-edit-chapter.php"><i class="fas fa-pencil-alt"></i> Edit</a>
                           <a class="btn btn-danger btn-sm" href="#"><i class="fas fa-trash"></i> Delete</a>
                       </td>
                     </tr>
@@ -82,8 +92,8 @@
                       <td>Chapter 2: What is Databases</td>
                       <td>Chapter</td>
                       <td>
-                      <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-folder"></i> View</a>
-                          <a class="btn btn-info btn-sm" href="#"><i class="fas fa-pencil-alt"></i> Edit</a>
+                      <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-eye"></i> View</a>
+                          <a class="btn btn-info btn-sm" href="lessons-edit-chapter.php"><i class="fas fa-pencil-alt"></i> Edit</a>
                           <a class="btn btn-danger btn-sm" href="#"><i class="fas fa-trash"></i> Delete</a>
                       </td>
                     </tr>
@@ -92,8 +102,8 @@
                       <td>Chapter 3: Mysql Basics</td>
                       <td>Chapter</td>
                       <td>
-                      <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-folder"></i> View</a>
-                          <a class="btn btn-info btn-sm" href="#"><i class="fas fa-pencil-alt"></i> Edit</a>
+                      <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-eye"></i> View</a>
+                          <a class="btn btn-info btn-sm" href="lessons-edit-chapter.php"><i class="fas fa-pencil-alt"></i> Edit</a>
                           <a class="btn btn-danger btn-sm" href="#"><i class="fas fa-trash"></i> Delete</a>
                       </td>
                     </tr>
@@ -102,8 +112,8 @@
                       <td>Mysql Quiz 1</td>
                       <td>Quiz</td>
                       <td>
-                      <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-folder"></i> View</a>
-                          <a class="btn btn-info btn-sm" href="#"><i class="fas fa-pencil-alt"></i> Edit</a>
+                      <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-eye"></i> View</a>
+                          <a class="btn btn-info btn-sm" href="lessons-edit-chapter.php"><i class="fas fa-pencil-alt"></i> Edit</a>
                           <a class="btn btn-danger btn-sm" href="#"><i class="fas fa-trash"></i> Delete</a>
                       </td>
                     </tr>

@@ -11,6 +11,14 @@
     font-size: 14px;
 }
 
+.lessons-imgcard {
+    height: 250px;
+    width: 100%;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: center center !important;
+}
+
 @media (max-width: 1200px) {
     .home-nav-login {
       display: none;

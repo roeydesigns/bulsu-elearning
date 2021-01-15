@@ -7,46 +7,39 @@
           <div class="card-header">
             <h3 class="card-title">
               <i class="fas fa-edit"></i>
-              Add New Lesson
+              Add New Chapter
             </h3>
           </div>
           <div class="card-body">
             <div class="row">
-                 <div class="col-md-8 col-12">
+                 <div class="col-md-8">
                     <div class="form-group">
-                        <label for="inputLessonTitle">Lesson Title</label>
+                        <label for="inputLessonTitle">Chapter Title</label>
                           <input type="email" class="form-control" id="inputLessonTitle" placeholder="Lesson Title"> 
                     </div>
                  </div>
 
-                   <div class="col-md-4 col-12">
+                   <div class="col-md-4">
                       <div class="form-group">
-                        <label>Status</label>
-                        <select class="form-control select2">
-                            <option selected="selected">Publish</option>
-                            <option>Unpublish</option>
+                        <label>Type</label>
+                        <select class="form-control select2" disabled>
+                            <option selected="selected">Chapter</option>
                         </select>
                      </div>
                    </div>
-                   <div class="col-md-4 col-12 pb-3">
-                    <label>Lesson Image</label>
-                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                      </div>
-                  </div>
                    <div class="col-md-12">
                      <div class="form-group">
-                        <label>Description</label>
-                        <textarea class="form-control" rows="3" placeholder="Description"></textarea>
+                        <label>Content</label>
+                        <textarea id="summernote" rows="3" style="z-index: 999;">
+                        <br><br>Place <em>some</em> <u>text</u> <strong>here</strong> to make contents.<br><br> <br>
+                        </textarea>
                      </div>
                    </div>
-
             </div>
           </div>
         <div class="card-footer clearfix">
           <div class="float-right">
-            <a class="btn btn-success" href="lessons.php">Submit</a>
+            <a class="btn btn-success" href="lessons-edit.php">Submit</a>
           </div>
         </div>
         <!-- /.card -->

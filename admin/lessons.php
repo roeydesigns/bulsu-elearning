@@ -9,8 +9,10 @@
           <p class="card-title">Lessons</p>
 
           <div class="card-tools">
+          <a class="btn btn-info btn-sm" href="lessons-view.php">
+            <i class="fas fa-eye"></i> View Lessons List</a>
           <a class="btn btn-primary btn-sm" href="lessons-add.php">
-            <i class="fas fa-plus"></i>Add New</a>
+            <i class="fas fa-plus"></i> Add New</a>
           </div>
         </div>
         <div class="card-body p-0">
@@ -56,7 +58,7 @@
                       </td>
                       <td class="project-actions text-right">
                           <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
+                              <i class="fas fa-eye">
                               </i>
                               View
                           </a>
@@ -94,7 +96,7 @@
                       </td>
                       <td class="project-actions text-right">
                           <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
+                              <i class="fas fa-eye">
                               </i>
                               View
                           </a>
@@ -132,7 +134,7 @@
                       </td>
                       <td class="project-actions text-right">
                           <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
+                              <i class="fas fa-eye">
                               </i>
                               View
                           </a>
@@ -171,7 +173,7 @@
                       </td>
                       <td class="project-actions text-right">
                           <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
+                              <i class="fas fa-eye">
                               </i>
                               View
                           </a>
@@ -209,7 +211,7 @@
                       </td>
                       <td class="project-actions text-right">
                           <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
+                              <i class="fas fa-eye">
                               </i>
                               View
                           </a>
@@ -232,6 +234,13 @@
         <!-- /.card-body -->
       </div>
       <!-- /.card -->
+        <ul class="pagination float-right">
+            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+        </ul>
 
     </section>
     <!-- /.content -->
