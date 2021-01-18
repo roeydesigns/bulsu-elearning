@@ -19,6 +19,10 @@
     background-position: center center !important;
 }
 
+#QremoveBtn, #QSanswer {
+    display: none;
+}
+
 @media (max-width: 1200px) {
     .home-nav-login {
       display: none;

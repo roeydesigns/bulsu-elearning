@@ -9,7 +9,7 @@
           <p class="card-title">Lessons</p>
 
           <div class="card-tools">
-          <a class="btn btn-info btn-sm" href="lessons-view.php">
+          <a class="btn btn-info btn-sm" href="lessons-view-list.php">
             <i class="fas fa-eye"></i> View Lessons List</a>
           <a class="btn btn-primary btn-sm" href="lessons-add.php">
             <i class="fas fa-plus"></i> Add New</a>
@@ -57,7 +57,7 @@
                           <span class="badge badge-success">Published</span>
                       </td>
                       <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="#">
+                          <a class="btn btn-primary btn-sm" href="lessons-view-index.php">
                               <i class="fas fa-eye">
                               </i>
                               View
@@ -80,7 +80,7 @@
                       </td>
                       <td>
                           <a>
-                            Lesson 2: Math in Programming
+                            Lesson 2: PHP Programming
                           </a>
                           <br/>
                           <small>
@@ -95,7 +95,7 @@
                           <span class="badge badge-success">Published</span>
                       </td>
                       <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="#">
+                          <a class="btn btn-primary btn-sm" href="lessons-view-index.php">
                               <i class="fas fa-eye">
                               </i>
                               View
@@ -133,7 +133,7 @@
                           <span class="badge badge-success">Published</span>
                       </td>
                       <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="#">
+                          <a class="btn btn-primary btn-sm" href="lessons-view-index.php">
                               <i class="fas fa-eye">
                               </i>
                               View
@@ -172,7 +172,7 @@
                           <span class="badge badge-success">Published</span>
                       </td>
                       <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="#">
+                          <a class="btn btn-primary btn-sm" href="lessons-view-index.php">
                               <i class="fas fa-eye">
                               </i>
                               View
@@ -195,7 +195,7 @@
                       </td>
                       <td>
                           <a>
-                            Lesson 5: PHP Programming
+                            Lesson 5: Math in Programming
                           </a>
                           <br/>
                           <small>
@@ -210,7 +210,7 @@
                           <span class="badge badge-danger">Unpublished</span>
                       </td>
                       <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="#">
+                          <a class="btn btn-primary btn-sm" href="lessons-view-index.php">
                               <i class="fas fa-eye">
                               </i>
                               View

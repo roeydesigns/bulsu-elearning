@@ -1,113 +1,49 @@
 <?php require_once 'includes/header.php'; ?>
 
     <!-- Main content -->
-    <section class="content px-3 pb-5">
-
-      <div id="accordion">
-        <div class="row">
-
-         <div class="col-lg-4">
-           <a href="#" style="color: #191919;">
-          <div class="card">
-            <div class="card-header lessons-imgcard" style="background: url('https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?cs=srgb&dl=pexels-kevin-ku-577585.jpg&fm=jpg')">
-
-            </div>
-
-            <div class="card-body">
-            <h3 class="pt-3">Lesson 1: Mysql Database</h3>
-              <p class="my-3">MySQL is a freely available open source Relational Database Management System (RDBMS) that
-                  uses Structured Query Language (SQL). SQL is the most popular language for adding, accessing
-                  and managing content in a database.</p>
-              <strong>Chapters: 6 | Quiz: 2 | Exam: 1</strong>
-
-            </div>
-            <div class="card-footer">
-                  <div class="row" style="padding-left: 7.5px">
-                      <p>Progress:</p>
-                      <div class="col-9 pt-1">
-                        <div class="progress">
-                          <div class="progress-bar bg-success progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                            <span>100% Completed</span>
-                          </div>
-                        </div>  
-                      </div>
-                  </div>
-            </div>
+    <section class="content">
+        <!-- /.row -->
+        <div class="card card-primary card-outline">
+          <div class="card-header">
+            <h3 class="card-title">
+              Chapter 2: What is Databases
+            </h3>
           </div>
-          </a>
-        </div>
-
-        
-        <div class="col-lg-4">
-           <a href="#" style="color: #191919;">
-          <div class="card">
-            <div class="card-header lessons-imgcard" style="background: url('https://images.pexels.com/photos/276452/pexels-photo-276452.jpeg?cs=srgb&dl=pexels-pixabay-276452.jpg&fm=jpg')">
-
-            </div>
-
-            <div class="card-body">
-            <h3 class="pt-3">Lesson 2: PHP Programming</h3>
-              <p class="my-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan id imperdiet et.</p>
-              <strong>Chapters: 4 | Quiz: 1 | Exam: 1</strong>
-
-            </div>
-            <div class="card-footer">
-                  <div class="row" style="padding-left: 7.5px">
-                      <p>Progress:</p>
-                      <div class="col-9 pt-1">
-                        <div class="progress">
-                          <div class="progress-bar bg-success progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                            <span>60% Completed</span>
-                          </div>
-                        </div>  
-                      </div>
-                  </div>
-            </div>
+          <div class="card-body">
+          <h3>What is a Database?</h3><p>A database is a structured collection of data that is used by the application systems
+of some given enterprise, and that is managed by a database management system.
+For the purpose of this course, think of a database as a collection of tables which
+are connected to each other. IT Learning Programme (ITLP) in the University of
+Oxford offers a course on how to design a database. This course is a pre-requisite
+to this course. However, if you did not attend the database designing course, please
+read the following paragraphs.
+As we mentioned, a database is a collection of tables. Each table is similar to a
+spreadsheet table in which each row is called a record and each column is called a
+field. For example, if we need to create a table that contains students’ information,
+we might have the following fields</p><table class="table table-bordered"><tbody><tr><td><h3>St_ID</h3></td><td><h3>St_Name</h3></td><td><h3>St_DateOfBirth</h3></td><td><h3>St_Email</h3></td></tr></tbody></table><p><span style="font-size: 1rem;"><br></span></p><p><span style="font-size: 1rem;">Data can be entered to this table so you can get the following table</span></p><table class="table table-bordered"><tbody><tr><td>St_ID<br></td><td>St_Name<br></td><td>St_DateOfBirth<br></td><td>St_Email<br></td></tr><tr><td>45215<br></td><td>John Smith<br></td><td>21/5/1995<br></td><td>jsmith@ox.ac.uk<br></td></tr><tr><td>45287<br></td><td>Alison Green&nbsp;<br></td><td>5/11/1994<br></td><td>agreen@ox.ac.uk<br></td></tr><tr><td>48652<br></td><td>Thomas Li<br></td><td>18/7/1998&nbsp;<br></td><td>tli@ox.ac.uk<br></td></tr><tr><td>51420<br></td><td>Susan Bailey<br></td><td>14/1/1991<br></td><td>sbailey@ox.ac.uk<br></td></tr><tr><td>52201<br></td><td>Will King<br></td><td>3/3/1997<br></td><td>wking@ox.ac.uk<br></td></tr></tbody></table><p><span style="font-size: 1rem;"><br></span>Although this table contains students’ information, it does not contain each
+student’s grades. This is fine because the grades have to appear in a different table
+to reduce data redundancy. This is called database normalisation. The grades
+table might look like&nbsp;</p><table class="table table-bordered"><tbody><tr><td>Grade_ID<br></td><td>St_ID<br></td><td>Course_ID<br></td><td>Grade_Value<br></td><td>Comments&nbsp;<br></td></tr></tbody></table><h3><br></h3><h6>Databases: MySQL introduction</h6><p>Notice how the Grades table is linked to the Students table via St_ID which
+appears in both tables. The field St_ID in the Students table is acting as the
+primary key which is a unique id to identify each record in the table. The field
+St_ID in the Grades table is called the foreign key and it links to a primary key in
+a different table. You might have noticed that there is a field called Course_ID in
+the Grades table which is another foreign key to identify a grade’s course. This
+means that there must be another table that contains data for different courses.
+Form the previous simple example you should now have an idea of what we mean
+by a database. It is important to understand the following concepts: database,
+table, record, field, primary key, foreign key and data normalisation. Next sections
+will build on this and focus on SQL and how to use it to build a complete database
+using MySQL.<br></p>
           </div>
-          </a>
-        </div>
-
-        
-        <div class="col-lg-4">
-           <a href="#" style="color: #191919;">
-          <div class="card">
-            <div class="card-header lessons-imgcard" style="background: url('https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')">
-
-            </div>
-
-            <div class="card-body">
-            <h3 class="pt-3">Lesson 3: Programming Loops</h3>
-              <p class="my-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan id imperdiet et.</p>
-              <strong>Chapters: 6 | Quiz: 1 | Exam: 1</strong>
-
-            </div>
-            <div class="card-footer">
-                  <div class="row" style="padding-left: 7.5px">
-                      <p>Progress:</p>
-                      <div class="col-9 pt-1">
-                        <div class="progress">
-                          <div class="progress-bar bg-success progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-                            <span>0% Completed</span>
-                          </div>
-                        </div>  
-                      </div>
-                  </div>
-            </div>
+        <div class="card-footer clearfix">
+          <div class="float-right">
+          <a class="btn btn-secondary" href="#">Back</a>
+            <a class="btn btn-success" href="#">Next</a>
           </div>
-          </a>
         </div>
-
-
-        </div>
-      </div>
-      
-      <ul class="pagination float-right">
-            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-        </ul>
+        <!-- /.card -->
+</div>
 
     </section>
     <!-- /.content -->

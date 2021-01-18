@@ -153,13 +153,6 @@
         </li>
 
         <li class="nav-item">
-          <a href="students.php" class="nav-link <?php if(basename($_SERVER["PHP_SELF"]) == "students.php" ) echo "active"; ?>">
-            <i class="nav-icon fas fa-users"></i>
-            <p>Students</p>
-          </a>
-        </li>
-
-        <li class="nav-item">
           <a href="lessons.php" class="nav-link <?php if(strpos(basename($_SERVER["PHP_SELF"]), 'lessons') !== false ) echo "active"; ?>">
             <i class="nav-icon fas fa-book"></i>
             <p>Lessons</p>
@@ -174,7 +167,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="calendar.php" class="nav-link <?php if(basename($_SERVER["PHP_SELF"]) == "students.php" ) echo "active"; ?>">
+          <a href="calendar.php" class="nav-link <?php if(basename($_SERVER["PHP_SELF"]) == "calendar.php" ) echo "active"; ?>">
             <i class="nav-icon fas fa-calendar"></i>
             <p>Calendar</p>
           </a>
@@ -207,21 +200,19 @@
             if(basename($_SERVER["PHP_SELF"]) == "index.php" ) echo "Dashboard";
             else if(basename($_SERVER["PHP_SELF"]) == "profile.php" ) echo "Profile";
             else if(strpos(basename($_SERVER["PHP_SELF"]), 'lessons') !== false) echo "Lessons";
-            else if(basename($_SERVER["PHP_SELF"]) == "students.php" ) echo "Students' Lists";
             else if(basename($_SERVER["PHP_SELF"]) == "records.php" ) echo "Records";
             else if(basename($_SERVER["PHP_SELF"]) == "calendar.php" ) echo "Calendar";
             ?></h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="../index.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
               <li class="breadcrumb-item active">
               <?php
             
             if(basename($_SERVER["PHP_SELF"]) == "index.php" ) echo "Dashboard";
             else if(basename($_SERVER["PHP_SELF"]) == "profile.php" ) echo "Profile";
             else if(strpos(basename($_SERVER["PHP_SELF"]), 'lessons') !== false) echo "Lessons";
-            else if(basename($_SERVER["PHP_SELF"]) == "students.php" ) echo "Students' Lists";
             else if(basename($_SERVER["PHP_SELF"]) == "records.php" ) echo "Records";
             else if(basename($_SERVER["PHP_SELF"]) == "calendar.php" ) echo "Calendar";
             ?></li>

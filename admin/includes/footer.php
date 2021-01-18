@@ -174,5 +174,56 @@
   };
   // DropzoneJS Demo Code End
 </script>
+<?php 
+ if(basename($_SERVER["PHP_SELF"]) == "question-add.php" ) { ?>
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+    var counter = 2;
+    $('select#QselectType').on('change', function() {
+      if (this.value =="Short Answer"){
+        document.getElementById("Qchoices").style.display = "none";
+        document.getElementById("QSanswer").style.display = "block";
+      }
+
+      else if (this.value =="Multiple Choice"){
+        document.getElementById("Qchoices").style.display = "block";
+        document.getElementById("QSanswer").style.display = "none";
+      }
+
+    });
+    $("#Qchoices-Addbtn").click(function () {
+
+    if(counter>10){
+            alert("Sorry, Only 10 Choices is Allowed");
+            return false;
+    }   
+    document.getElementById("QremoveBtn").style.display = "inline-block";
+    $("#Qchoices").append('<div class="input-group pt-2" id="QchoicesDiv' + counter + '"><div class="input-group-prepend"><span class="input-group-text"><input type="radio"></span></div><input type="text" class="form-control" placeholder="Choice Description"></div>')
+                
+    counter++;
+     });
+
+     $("#QremoveBtn").click(function () {
+        counter--;
+
+        if(counter==1){
+          document.getElementById("QremoveBtn").style.display = "none";
+          return false;
+        }
+        if(counter==2){
+          document.getElementById("QremoveBtn").style.display = "none";
+        }
+        $("#QchoicesDiv" + counter).remove();
+            
+     });
+        
+
+  });
+</script>
+
+<?php }?>
+
 </body>
 </html>

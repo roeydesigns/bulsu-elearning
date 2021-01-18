@@ -15,7 +15,7 @@
                  <div class="col-md-8">
                     <div class="form-group">
                         <label for="inputLessonTitle">Chapter Title</label>
-                          <input type="email" class="form-control" id="inputLessonTitle" placeholder="Lesson Title"> 
+                          <input type="email" class="form-control" id="inputLessonTitle" placeholder="Chapter Title"> 
                     </div>
                  </div>
 
@@ -25,6 +25,12 @@
                         <select class="form-control select2" disabled>
                             <option selected="selected">Chapter</option>
                         </select>
+                     </div>
+                   </div>
+                   <div class="col-md-12">
+                     <div class="form-group">
+                        <label>Excerpt</label>
+                        <textarea class="form-control" rows="3" placeholder="Excerpt"></textarea>
                      </div>
                    </div>
                    <div class="col-md-12">

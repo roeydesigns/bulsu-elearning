@@ -62,7 +62,7 @@
 
                 <div class="card-tools">
           <a class="btn btn-primary btn-sm" href="lessons-add-chapter.php"><i class="fas fa-plus"></i> Add New Chapter</a>
-          <a class="btn btn-warning btn-sm" href="#"><i class="fas fa-plus"></i> Add New Quiz/Exam</a>
+          <a class="btn btn-warning btn-sm" href="quiz-add.php"><i class="fas fa-plus"></i> Add New Quiz/Exam</a>
           </div>
               </div>
               <!-- /.card-header -->
@@ -82,7 +82,7 @@
                       <td>Chapter 1: Introduction</td>
                       <td>Chapter</td>
                       <td>
-                      <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-eye"></i> View</a>
+                      <a class="btn btn-primary btn-sm" href="lessons-view.php"><i class="fas fa-eye"></i> View</a>
                           <a class="btn btn-info btn-sm" href="lessons-edit-chapter.php"><i class="fas fa-pencil-alt"></i> Edit</a>
                           <a class="btn btn-danger btn-sm" href="#"><i class="fas fa-trash"></i> Delete</a>
                       </td>
@@ -92,7 +92,7 @@
                       <td>Chapter 2: What is Databases</td>
                       <td>Chapter</td>
                       <td>
-                      <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-eye"></i> View</a>
+                      <a class="btn btn-primary btn-sm" href="lessons-view.php"><i class="fas fa-eye"></i> View</a>
                           <a class="btn btn-info btn-sm" href="lessons-edit-chapter.php"><i class="fas fa-pencil-alt"></i> Edit</a>
                           <a class="btn btn-danger btn-sm" href="#"><i class="fas fa-trash"></i> Delete</a>
                       </td>
@@ -102,7 +102,7 @@
                       <td>Chapter 3: Mysql Basics</td>
                       <td>Chapter</td>
                       <td>
-                      <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-eye"></i> View</a>
+                      <a class="btn btn-primary btn-sm" href="lessons-view.php"><i class="fas fa-eye"></i> View</a>
                           <a class="btn btn-info btn-sm" href="lessons-edit-chapter.php"><i class="fas fa-pencil-alt"></i> Edit</a>
                           <a class="btn btn-danger btn-sm" href="#"><i class="fas fa-trash"></i> Delete</a>
                       </td>
@@ -112,8 +112,8 @@
                       <td>Mysql Quiz 1</td>
                       <td>Quiz</td>
                       <td>
-                      <a class="btn btn-primary btn-sm" href="#"><i class="fas fa-eye"></i> View</a>
-                          <a class="btn btn-info btn-sm" href="lessons-edit-chapter.php"><i class="fas fa-pencil-alt"></i> Edit</a>
+                      <a class="btn btn-primary btn-sm" href="quiz-view.php"><i class="fas fa-eye"></i> View</a>
+                          <a class="btn btn-info btn-sm" href="quiz-edit.php"><i class="fas fa-pencil-alt"></i> Edit</a>
                           <a class="btn btn-danger btn-sm" href="#"><i class="fas fa-trash"></i> Delete</a>
                       </td>
                     </tr>
