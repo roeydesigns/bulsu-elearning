@@ -3,25 +3,32 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>
+  <title>BulSU iLearn
   <?php
-  if(basename($_SERVER["PHP_SELF"]) == "index.php" ){
-    echo "BulSU iLearn";
-  }
 
-  else if(basename($_SERVER["PHP_SELF"]) == "forgot.php" ){
-    echo "Forgot Password";
+  if(basename($_SERVER["PHP_SELF"]) == "forgot.php" ){
+    echo " | Forgot Password";
   }
-
   else if(basename($_SERVER["PHP_SELF"]) == "register.php" ){
-    echo "Register New Account";
+    echo " | Register New Account";
   }
-    
+  else if(basename($_SERVER["PHP_SELF"]) == "about.php" ){
+    echo " | About";
+  }
+  else if(basename($_SERVER["PHP_SELF"]) == "developers.php" ){
+    echo " | Developers";
+  }
+  else if(basename($_SERVER["PHP_SELF"]) == "missionandvision.php" ){
+    echo " | Mission & Vision";
+  }
+  else if(basename($_SERVER["PHP_SELF"]) == "terms.php" ){
+    echo " | Terms and Conditions";
+  }
     ?>
     
   
   </title>
-
+  <link rel="icon" href="images/logo-login.png" type="image/png">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -63,17 +70,17 @@
       <div class="collapse navbar-collapse order-3" id="navbarCollapse">
         <!-- Left navbar links -->
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
+          <li class="nav-item <?php if(basename($_SERVER["PHP_SELF"]) == "index.php" ) echo "active"; ?>">
             <a href="index.php" class="nav-link">Home</a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">About</a>
+          <li class="nav-item <?php if(basename($_SERVER["PHP_SELF"]) == "about.php" ) echo "active"; ?>">
+            <a href="about.php" class="nav-link">About</a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">Developers</a>
+          <li class="nav-item <?php if(basename($_SERVER["PHP_SELF"]) == "developers.php" ) echo "active"; ?>">
+            <a href="developers.php" class="nav-link">Developers</a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">Mission & Vision</a>
+          <li class="nav-item <?php if(basename($_SERVER["PHP_SELF"]) == "missionandvision.php" ) echo "active"; ?>">
+            <a href="missionandvision.php" class="nav-link">Mission & Vision</a>
           </li>
 
             </ul>

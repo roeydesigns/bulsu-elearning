@@ -15,7 +15,7 @@
                  <div class="col-md-8 col-12">
                     <div class="form-group">
                         <label for="inputLessonTitle">Quiz/Exam Title</label>
-                          <input type="email" class="form-control" id="inputLessonTitle" placeholder="Quiz/Exam Title"> 
+                          <input type="text" class="form-control" id="inputLessonTitle" placeholder="Quiz/Exam Title"> 
                     </div>
                  </div>
 

@@ -15,7 +15,7 @@
                  <div class="col-md-8">
                     <div class="form-group">
                         <label for="inputLessonTitle">Chapter Title</label>
-                          <input type="email" class="form-control" id="inputLessonTitle" placeholder="Chapter Title"> 
+                          <input type="text" class="form-control" id="inputLessonTitle" placeholder="Chapter Title"> 
                     </div>
                  </div>
 

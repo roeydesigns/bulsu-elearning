@@ -20,13 +20,13 @@
           </ol>
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img class="d-block w-100" src="https://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap" alt="First slide">
+              <img class="d-block w-100" src="https://myportal.bulsu.edu.ph/assets/custom/enrollment_schedule_2020/01.jpg" alt="First slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="https://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap" alt="Second slide">
+              <img class="d-block w-100" src="https://myportal.bulsu.edu.ph/assets/custom/enrollment_schedule_2020/02.jpg" alt="Second slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" src="https://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap" alt="Third slide">
+              <img class="d-block w-100" src="https://myportal.bulsu.edu.ph/assets/custom/enrollment_schedule_2020/03.jpg" alt="Third slide">
             </div>
           </div>
           <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -43,29 +43,28 @@
           </a>
         </div>
     </div>
-
           <div class="col-lg-4">
             <div class="card">
               <div class="card-body login-card-body">
-                <h1 class="text-center">Login</h1>
+                <h1 class="text-center pb-2">Login</h1>
 
-                <form action="admin" method="post">
                   <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="Email">
+                    <input type="text" class="form-control" placeholder="Email / Username" id="emailuserInput">
                     <div class="input-group-append">
                       <div class="input-group-text">
-                        <span class="fas fa-envelope"></span>
+                        <span class="fas fa-user"></span>
                       </div>
                     </div>
                   </div>
                   <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="password" class="form-control" placeholder="Password" id="passwordInput">
                     <div class="input-group-append">
                       <div class="input-group-text">
                         <span class="fas fa-lock"></span>
                       </div>
                     </div>
                   </div>
+                  <small id="alertLogininfo">Some input fields are empty. Fillup the fields first before you can  login.</small>
                   <div class="row">
                   <div class="col-12">
                     <div class="icheck-primary">
@@ -75,13 +74,14 @@
                       </label>
                     </div>
                   </div>
+
                     <div class="col-12 pt-2">
-                      <button type="submit" class="btn btn-primary btn-block">Login</button>
+                      <button type="submit" class="btn btn-primary btn-block" id="loginBTN">Login</button>
                     </div>
                     
 
                   </div>
-                </form>
+
                 <p class="text-center my-2">- OR -</p>
                 <a href="register.php" class="btn btn-block btn-danger">Register</a>
                 <p class="mb-1 text-center pt-3">

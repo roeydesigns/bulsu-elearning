@@ -15,7 +15,7 @@
                  <div class="col-md-8 col-12">
                     <div class="form-group">
                         <label for="inputLessonTitle">Lesson Title</label>
-                          <input type="email" class="form-control" id="inputLessonTitle" placeholder="Lesson Title" value="Lesson 1: Mysql Database"> 
+                          <input type="text" class="form-control" id="inputLessonTitle" placeholder="Lesson Title" value="Lesson 1: Mysql Database"> 
                     </div>
                  </div>
 

@@ -23,6 +23,11 @@
     display: none;
 }
 
+#alertLogininfo {
+ color:#dc3545;
+ display: none;
+}
+
 @media (max-width: 1200px) {
     .home-nav-login {
       display: none;

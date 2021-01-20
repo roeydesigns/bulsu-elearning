@@ -94,7 +94,7 @@
                     <div class="icheck-primary">
                       <input type="checkbox" id="agree">
                       <label for="agree">
-                        I agree with the <a href="#">Terms and Conditions</a>
+                        I agree with the <a href="terms.php">Terms and Conditions</a>
                       </label>
                     </div>
                   </div>

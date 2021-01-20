@@ -233,7 +233,6 @@ $(document).ready(function(){
 <script src="../plugins/fullcalendar/main.js"></script>
 <script>
   $(function () {
-    
 
     /* initialize the external events
      -----------------------------------------------------------------*/
@@ -292,18 +291,12 @@ $(document).ready(function(){
     });
 
     var calendar = new Calendar(calendarEl, {
-      selectable: true,
-      selectHelper: true,
       headerToolbar: {
         left  : 'prev,next today',
         center: 'title',
         right : 'dayGridMonth,timeGridWeek,timeGridDay'
       },
-        select: function(info) {
-         var evventTitle = prompt ('Event Title:');
-        },
       themeSystem: 'bootstrap',
-      
       //Random default events
       events: [
         {
@@ -411,8 +404,6 @@ $(document).ready(function(){
       $('#new-event').val('')
     })
   })
-
-  
 </script>
 <?php }?>
 <?php if(basename($_SERVER["PHP_SELF"]) == "index.php" ) { ?>

@@ -29,7 +29,7 @@
                    <div class="col-md-3 col-12">
                       <div class="form-group">
                         <label>Type</label>
-                        <select class="form-control select2" id="QselectType">
+                        <select class="form-control select2" id="QselectType" disabled>
                             <option selected="selected">Multiple Choice</option>
                             <option>Short Answer</option>
                         </select>

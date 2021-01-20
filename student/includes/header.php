@@ -3,12 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin | BulSU iLearn</title>
+  <title>Student | BulSU iLearn</title>
   <link rel="icon" href="../images/logo-login.png" type="image/png">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- JQVMap -->
   <link rel="stylesheet" href="../plugins/jqvmap/jqvmap.min.css">
   <!-- overlayScrollbars -->
@@ -19,6 +17,8 @@
   <link rel="stylesheet" href="../style.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- daterange picker -->
   <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
   <!-- iCheck for checkboxes and radio inputs -->
@@ -98,10 +98,10 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="../dist/img/avatar4.png" class="img-circle elevation-2" alt="User Image">
+        <img src="../dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="profile.php" class="d-block"><b>Juan</b> - Admin</a>
+        <a href="profile.php" class="d-block"><b>June Vincent</b> - Student</a>
       </div>
     </div>
 
@@ -128,14 +128,14 @@
         </li>
 
         <li class="nav-item">
-          <a href="lessons.php" class="nav-link <?php if(strpos(basename($_SERVER["PHP_SELF"]), 'lessons') !== false ) echo "active"; ?>">
+          <a href="lessons-view-list.php" class="nav-link <?php if(strpos(basename($_SERVER["PHP_SELF"]), 'lessons') !== false ) echo "active"; ?>">
             <i class="nav-icon fas fa-book"></i>
             <p>Lessons</p>
           </a>
         </li>
 
         <li class="nav-item">
-          <a href="records.php" class="nav-link <?php if(strpos(basename($_SERVER["PHP_SELF"]), 'records') !== false) echo "active"; ?>">
+          <a href="records-view.php" class="nav-link <?php if(strpos(basename($_SERVER["PHP_SELF"]), 'records') !== false) echo "active"; ?>">
             <i class="nav-icon fas fa-address-book"></i>
             <p>Records</p>
           </a>
@@ -188,7 +188,7 @@
             if(basename($_SERVER["PHP_SELF"]) == "index.php" ) echo "Dashboard";
             else if(basename($_SERVER["PHP_SELF"]) == "profile.php" ) echo "Profile";
             else if(strpos(basename($_SERVER["PHP_SELF"]), 'lessons') !== false) echo "Lessons";
-            else if(strpos(basename($_SERVER["PHP_SELF"]), 'records') !== false) echo "Records";
+            else if(strpos(basename($_SERVER["PHP_SELF"]), 'records') !== false ) echo "Records";
             else if(basename($_SERVER["PHP_SELF"]) == "calendar.php" ) echo "Calendar";
             ?></li>
             </ol>
