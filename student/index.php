@@ -103,7 +103,7 @@
                 </div>
               </div>
               <!-- /.card-header -->
-              <div class="card-body">
+              <div class="card-body p-0">
                 <ul class="todo-list" data-widget="todo-list">
                   <li>
                     <!-- drag handle -->
