@@ -82,8 +82,6 @@
 
                   </div>
 
-                <p class="text-center my-2">- OR -</p>
-                <a href="register.php" class="btn btn-block btn-danger">Register</a>
                 <p class="mb-1 text-center pt-3">
                     <a href="forgot.php">I forgot my password</a>
                 </p>

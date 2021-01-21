@@ -28,8 +28,15 @@
  display: none;
 }
 
-@media (max-width: 1200px) {
+.register-link {
+    display: none;
+}
+
+@media (max-width: 768px) {
     .home-nav-login {
       display: none;
+    }
+    .register-link {
+        display: list-item;
     }
   }

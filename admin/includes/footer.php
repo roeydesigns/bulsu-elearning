@@ -44,6 +44,7 @@
 
     // Summernote
     $('#summernote').summernote()
+    $('#mvgsummernote').summernote()
 
     $("[data-toggle='tooltip']").tooltip();
 
@@ -300,7 +301,10 @@ $(document).ready(function(){
         right : 'dayGridMonth,timeGridWeek,timeGridDay'
       },
         select: function(info) {
-         var evventTitle = prompt ('Event Title:');
+         var evventTitle = prompt ('('+info.startStr + ' to ' + info.endStr+')'+'Event Title:');
+        },
+        eventClick: function (event) {
+          var deleteMsg = confirm("Do you really want to delete this event?");    
         },
       themeSystem: 'bootstrap',
       
@@ -309,8 +313,8 @@ $(document).ready(function(){
         {
           title          : 'Quiz',
           start          : new Date(y, m, 1),
-          backgroundColor: '#f56954', //red
-          borderColor    : '#f56954', //red
+          backgroundColor: '#dc3545', //red
+          borderColor    : '#dc3545', //red
           allDay         : true
         },
         {

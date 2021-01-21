@@ -82,6 +82,9 @@
           <li class="nav-item <?php if(basename($_SERVER["PHP_SELF"]) == "missionandvision.php" ) echo "active"; ?>">
             <a href="missionandvision.php" class="nav-link">Mission & Vision</a>
           </li>
+          <li class="nav-item register-link <?php if(basename($_SERVER["PHP_SELF"]) == "register.php" ) echo "active"; ?>">
+            <a href="register.php" class="nav-link">Create an Account</a>
+          </li>
 
             </ul>
           </li>

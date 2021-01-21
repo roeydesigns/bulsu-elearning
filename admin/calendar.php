@@ -15,7 +15,7 @@
                   <!-- the events -->
                   <div id="external-events">
                     <div class="external-event bg-success">Exam</div>
-                    <div class="external-event bg-warning">Lecture</div>
+                    <div class="external-event" style="background-color: #f39c12; color: #fff;">Lecture</div>
                     <div class="external-event bg-info">eLearning Module</div>
                     <div class="external-event bg-primary">Reminders</div>
                     <div class="external-event bg-danger">Quiz</div>
@@ -37,11 +37,11 @@
                 <div class="card-body">
                   <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
                     <ul class="fc-color-picker" id="color-chooser">
-                      <li><a class="text-primary" href="#"><i class="fas fa-square"></i></a></li>
-                      <li><a class="text-warning" href="#"><i class="fas fa-square"></i></a></li>
-                      <li><a class="text-success" href="#"><i class="fas fa-square"></i></a></li>
-                      <li><a class="text-danger" href="#"><i class="fas fa-square"></i></a></li>
-                      <li><a class="text-muted" href="#"><i class="fas fa-square"></i></a></li>
+                      <li><a class="calendar-color-event" style="color:#007bff" href="#"><i class="fas fa-square"></i></a></li>
+                      <li><a class="calendar-color-event" style="color:#f39c12"  href="#"><i class="fas fa-square"></i></a></li>
+                      <li><a class="calendar-color-event" style="color:#28a745"  href="#"><i class="fas fa-square"></i></a></li>
+                      <li><a class="calendar-color-event" style="color:#dc3545" href="#"><i class="fas fa-square"></i></a></li>
+                      <li><a class="calendar-color-event" style="color:#6c757d" href="#"><i class="fas fa-square"></i></a></li>
                     </ul>
                   </div>
                   <!-- /btn-group -->

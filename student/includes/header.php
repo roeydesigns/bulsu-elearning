@@ -128,7 +128,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="lessons-view-list.php" class="nav-link <?php if(strpos(basename($_SERVER["PHP_SELF"]), 'lessons') !== false ) echo "active"; ?>">
+          <a href="lessons-view-list.php" class="nav-link <?php if(strpos(basename($_SERVER["PHP_SELF"]), 'lessons') !== false  || strpos(basename($_SERVER["PHP_SELF"]), 'quiz') !== false ) echo "active"; ?>">
             <i class="nav-icon fas fa-book"></i>
             <p>Lessons</p>
           </a>
@@ -176,6 +176,7 @@
             else if(basename($_SERVER["PHP_SELF"]) == "profile.php" ) echo "Profile";
             else if(strpos(basename($_SERVER["PHP_SELF"]), 'lessons') !== false) echo "Lessons";
             else if(strpos(basename($_SERVER["PHP_SELF"]), 'records') !== false) echo "Records";
+            else if(strpos(basename($_SERVER["PHP_SELF"]), 'quiz') !== false) echo "Quiz";
             else if(basename($_SERVER["PHP_SELF"]) == "calendar.php" ) echo "Calendar";
             ?></h1>
           </div><!-- /.col -->
@@ -189,6 +190,7 @@
             else if(basename($_SERVER["PHP_SELF"]) == "profile.php" ) echo "Profile";
             else if(strpos(basename($_SERVER["PHP_SELF"]), 'lessons') !== false) echo "Lessons";
             else if(strpos(basename($_SERVER["PHP_SELF"]), 'records') !== false ) echo "Records";
+            else if(strpos(basename($_SERVER["PHP_SELF"]), 'quiz') !== false) echo "Quiz";
             else if(basename($_SERVER["PHP_SELF"]) == "calendar.php" ) echo "Calendar";
             ?></li>
             </ol>

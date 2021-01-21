@@ -302,8 +302,8 @@ $(document).ready(function(){
         {
           title          : 'Quiz',
           start          : new Date(y, m, 1),
-          backgroundColor: '#f56954', //red
-          borderColor    : '#f56954', //red
+          backgroundColor: '#dc3545', //red
+          borderColor    : '#dc3545', //red
           allDay         : true
         },
         {
