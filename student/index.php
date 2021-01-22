@@ -6,90 +6,110 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3>6</h3>
-
-                <p>Unread Lessons</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-ios-book"></i>
-              </div>
-              <a href="lessons-view-list.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+        
+        <div class="col-lg-9 col-12">
+        <div class="row">
+         <div class="col-lg-4">
+         <a href="lessons-view-index.php" style="color: #191919;">
+         <div class="card">
+            <div class="card-header lessons-imgcard-dash" style="background: url('https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?cs=srgb&dl=pexels-kevin-ku-577585.jpg&fm=jpg')">
             </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3>5</h3>
-
-                <p>Quizes Taken</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars "></i>
-              </div>
-              <a href="records-view.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <div class="card-body">
+            <h6><strong>Lesson 1: Mysql Database</strong></h6>
+              <small>MySQL is a freely available open source Relational Database Management ...</small>
             </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-purple">
-              <div class="inner">
-                <h3>2</h3>
-
-                <p>Exams Taken</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-document-text"></i>
-              </div>
-              <a href="records-view.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>2</h3>
-
-                <p>Recently Finish Lessons</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-folder"></i>
-              </div>
-              <a href="lessons-view-list.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-                  <!-- Main row -->
-        <div class="col-lg-8 col-12 ">
-                 <!-- TO DO List -->
-          <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h3 class="card-title">
-                  <i class="fas fa-calendar mr-1"></i>
-                  Calendar of Events
-                </h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                  <div id="external-events"></div>
-                  <div class="card card-primary">
-                    <div class="card-body p-0">
-                      <div id="calendar"></div>
-                    </div>
+            <div class="card-footer">
+                <div class="progress">
+                  <div class="progress-bar bg-success progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                    <span>60% Completed</span>
                   </div>
-              </div>
+                </div>  
+            </div>
           </div>
-
+          </a>
         </div>
+        <div class="col-lg-4">
+         <a href="lessons-view-index.php" style="color: #191919;">
+         <div class="card">
+            <div class="card-header lessons-imgcard-dash" style="background: url('https://images.pexels.com/photos/276452/pexels-photo-276452.jpeg?cs=srgb&dl=pexels-pixabay-276452.jpg&fm=jpg')">
+            </div>
+            <div class="card-body">
+            <h6><strong>Lesson 2: PHP Programming</strong></h6>
+              <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat...</small>
+            </div>
+            <div class="card-footer">
+                <div class="progress">
+                  <div class="progress-bar bg-success progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                    <span>0% Completed</span>
+                  </div>
+                </div>  
+            </div>
+          </div>
+          </a>
+        </div>
+        <div class="col-lg-4">
+         <a href="lessons-view-index.php" style="color: #191919;">
+         <div class="card">
+            <div class="card-header lessons-imgcard-dash" style="background: url('https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')">
+            </div>
+            <div class="card-body">
+            <h6><strong>Lesson 3: Programming Loops</strong></h6>
+              <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat...</small>
+            </div>
+            <div class="card-footer">
+                <div class="progress">
+                  <div class="progress-bar bg-success progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                    <span>0% Completed</span>
+                  </div>
+                </div>  
+            </div>
+          </div>
+          </a>
+        </div>
+        <div class="col-lg-4">
+         <a href="lessons-view-index.php" style="color: #191919;">
+         <div class="card">
+            <div class="card-header lessons-imgcard-dash" style="background: url('https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg')">
+            </div>
+            <div class="card-body">
+            <h6><strong>Lesson 4: Array in Programming</strong></h6>
+              <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat...</small>
+            </div>
+            <div class="card-footer">
+                <div class="progress">
+                  <div class="progress-bar bg-success progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                    <span>0% Completed</span>
+                  </div>
+                </div>  
+            </div>
+          </div>
+          </a>
+        </div>
+        <div class="col-lg-4">
+         <a href="lessons-view-index.php" style="color: #191919;">
+         <div class="card">
+            <div class="card-header lessons-imgcard-dash" style="background: url('https://images.pexels.com/photos/614117/pexels-photo-614117.jpeg')">
+            </div>
+            <div class="card-body">
+            <h6><strong>Lesson 5: Math in Programming</strong></h6>
+              <small>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat...</small>
+            </div>
+            <div class="card-footer">
+                <div class="progress">
+                  <div class="progress-bar bg-success progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                    <span>0% Completed</span>
+                  </div>
+                </div>  
+            </div>
+          </div>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
         <!-- /.row -->
-        <div class="col-lg-4 col-12">
+        <div class="col-lg-3 col-12">
                  <!-- TO DO List -->
                  <div class="card card-primary card-outline">
               <div class="card-header">
@@ -117,11 +137,7 @@
                       <label for="todoCheck1"></label>
                     </div>
                     <!-- todo text -->
-                    <span class="text">Read Lesson 1, Chapter 1</span>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
+                    <span class="text" style="font-size:14px">Read Lesson 1, Chapter 1</span>
                   </li>
                   <li>
                     <span class="handle">
@@ -132,11 +148,7 @@
                       <input type="checkbox" value="" name="todo2" id="todoCheck2" checked>
                       <label for="todoCheck2"></label>
                     </div>
-                    <span class="text">Read Lesson 1, Chapter 2</span>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
+                    <span class="text"  style="font-size:14px">Read Lesson 1, Chapter 2</span>
                   </li>
                   <li>
                     <span class="handle">
@@ -147,11 +159,7 @@
                       <input type="checkbox" value="" name="todo3" id="todoCheck3">
                       <label for="todoCheck3"></label>
                     </div>
-                    <span class="text">Read Lesson 1, Chapter 3</span>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
+                    <span class="text"  style="font-size:14px">Read Lesson 1, Chapter 3</span>
                   </li>
                   <li>
                     <span class="handle">
@@ -162,11 +170,7 @@
                       <input type="checkbox" value="" name="todo4" id="todoCheck4">
                       <label for="todoCheck4"></label>
                     </div>
-                    <span class="text">Answer the Mysql Quiz</span>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
+                    <span class="text"  style="font-size:14px">Answer the Mysql Quiz</span>
                   </li>
                   <li>
                     <span class="handle">
@@ -177,11 +181,7 @@
                       <input type="checkbox" value="" name="todo5" id="todoCheck5">
                       <label for="todoCheck5"></label>
                     </div>
-                    <span class="text">Read Lesson 2, Chapter 1</span>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
+                    <span class="text"  style="font-size:14px">Read Lesson 2, Chapter 1</span>
                   </li>
                   <li>
                     <span class="handle">
@@ -192,11 +192,7 @@
                       <input type="checkbox" value="" name="todo6" id="todoCheck6">
                       <label for="todoCheck6"></label>
                     </div>
-                    <span class="text">Read Lesson 2, Chapter 2</span>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
+                    <span class="text"  style="font-size:14px">Read Lesson 2, Chapter 2</span>
                   </li>
                 </ul>
               </div>

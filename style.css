@@ -19,6 +19,14 @@
     background-position: center center !important;
 }
 
+.lessons-imgcard-dash {
+    height: 150px;
+    width: 100%;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: center center !important;
+}
+
 #QremoveBtn, #QSanswer {
     display: none;
 }
