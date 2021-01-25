@@ -29,7 +29,7 @@ $("#loginBTN").click(function () {
           document.getElementById("alertLogininfo").innerHTML = "Wrong Username or Password. Try again.";
         }
       }
-      else if (emailuser == 'junevcruz' || emailuser == 'junevcruz@gmail.com'){
+      else if (emailuser == 'student' || emailuser == 'junevcruz@gmail.com'){
         if (passinput == '1234'){
           document.location.href="student"; 
         }
