@@ -17,7 +17,7 @@
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="records.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="students.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

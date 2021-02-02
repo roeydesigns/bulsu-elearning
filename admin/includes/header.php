@@ -135,9 +135,9 @@
         </li>
 
         <li class="nav-item">
-          <a href="records.php" class="nav-link <?php if(strpos(basename($_SERVER["PHP_SELF"]), 'records') !== false) echo "active"; ?>">
+          <a href="students.php" class="nav-link <?php if(strpos(basename($_SERVER["PHP_SELF"]), 'students') !== false) echo "active"; ?>">
             <i class="nav-icon fas fa-address-book"></i>
-            <p>Records</p>
+            <p>Students</p>
           </a>
         </li>
 
@@ -182,7 +182,7 @@
             if(basename($_SERVER["PHP_SELF"]) == "index.php" ) echo "Dashboard";
             else if(basename($_SERVER["PHP_SELF"]) == "profile.php" ) echo "Profile";
             else if(strpos(basename($_SERVER["PHP_SELF"]), 'lessons') !== false) echo "Lessons";
-            else if(strpos(basename($_SERVER["PHP_SELF"]), 'records') !== false) echo "Records";
+            else if(strpos(basename($_SERVER["PHP_SELF"]), 'students') !== false) echo "Students";
             else if(strpos(basename($_SERVER["PHP_SELF"]), 'quiz') !== false) echo "Quiz";
             else if(strpos(basename($_SERVER["PHP_SELF"]), 'question') !== false) echo "Question";
             else if(basename($_SERVER["PHP_SELF"]) == "settings.php" ) echo "Settings";
@@ -198,7 +198,7 @@
             if(basename($_SERVER["PHP_SELF"]) == "index.php" ) echo "Dashboard";
             else if(basename($_SERVER["PHP_SELF"]) == "profile.php" ) echo "Profile";
             else if(strpos(basename($_SERVER["PHP_SELF"]), 'lessons') !== false) echo "Lessons";
-            else if(strpos(basename($_SERVER["PHP_SELF"]), 'records') !== false) echo "Records";
+            else if(strpos(basename($_SERVER["PHP_SELF"]), 'students') !== false) echo "Students";
             else if(strpos(basename($_SERVER["PHP_SELF"]), 'quiz') !== false) echo "Quiz";
             else if(strpos(basename($_SERVER["PHP_SELF"]), 'question') !== false) echo "Question";
             else if(basename($_SERVER["PHP_SELF"]) == "settings.php" ) echo "Settings";

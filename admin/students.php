@@ -44,7 +44,7 @@
                           <a href="mailto:junevcruz@gmail.com">junevcruz@gmail.com</a>
                       </td>
                       <td class="project-actions text-right">
-                      <a class="btn btn-info btn-sm" href="records-view.php">
+                      <a class="btn btn-info btn-sm" href="students-view.php">
                               <i class="fas fa-address-book">
                               </i>
                               Records
@@ -76,7 +76,7 @@
                       <a href="mailto:nataliemendoza@gmail.com">nataliemendoza@gmail.com</a>
                       </td>
                       <td class="project-actions text-right">
-                      <a class="btn btn-info btn-sm" href="records-view.php">
+                      <a class="btn btn-info btn-sm" href="students-view.php">
                               <i class="fas fa-address-book">
                               </i>
                               Records
@@ -108,7 +108,7 @@
                       <a href="mailto:jenniedungo@gmail.com">jenniedungo@gmail.com</a>
                       </td>
                       <td class="project-actions text-right">
-                      <a class="btn btn-info btn-sm" href="records-view.php">
+                      <a class="btn btn-info btn-sm" href="students-view.php">
                               <i class="fas fa-address-book">
                               </i>
                               Records
@@ -141,7 +141,7 @@
                       <a href="mailto:josedelacerna@gmail.com">josedelacerna@gmail.com</a>
                       </td>
                       <td class="project-actions text-right">
-                      <a class="btn btn-info btn-sm" href="records-view.php">
+                      <a class="btn btn-info btn-sm" href="students-view.php">
                               <i class="fas fa-address-book">
                               </i>
                               Records
@@ -173,7 +173,7 @@
                       <a href="mailto:junesantos@gmail.com">junesantos@gmail.com</a>
                       </td>
                       <td class="project-actions text-right">
-                      <a class="btn btn-info btn-sm" href="records-view.php">
+                      <a class="btn btn-info btn-sm" href="students-view.php">
                               <i class="fas fa-address-book">
                               </i>
                               Records
