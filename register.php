@@ -1,4 +1,90 @@
-<?php require_once 'includes/header.php'; ?>
+<?php
+  session_start();
+   if(!isset($_SESSION["loggedin"])){}
+
+  else if(isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true){
+    header("location: index.php");
+    exit;
+  }
+
+  require_once "config.php";
+
+// Define variables and initialize with empty values
+$register_err = $studentno =  $username = $email = $password =  "";
+$register_success = "";
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+    if(empty(trim($_POST["studentno"]))){
+        $register_err = "Please enter a valid student no.";
+    } else{
+        $studentno = trim($_POST["studentno"]);
+    }
+
+    if(empty(trim($_POST["username"]))){
+      $register_err = "Please enter a valid username.";
+    } else{
+      $username = trim($_POST["username"]);
+    }
+
+    if(empty(trim($_POST["email"]))){
+      $register_err = "Please enter a valid email.";
+    } else{
+      $email = trim($_POST["email"]);
+    }
+    
+    if(empty(trim($_POST["password"]))){
+      $register_err = "Please enter a valid password.";
+    }
+    elseif(strlen(trim($_POST["password"])) < 6){
+      $register_err = "Password must have atleast 6 characters.";
+    } else{
+      $password = trim($_POST["password"]);
+    }
+
+
+    if(empty($register_err)){  
+      $sql = "SELECT * FROM users WHERE student_no = :studentno OR username = :username OR email = :email";
+      
+      $stmt = $pdo -> prepare($sql);
+      $stmt->bindParam(':studentno', $studentno, PDO::PARAM_STR);  
+      $stmt->bindParam(':username', $username, PDO::PARAM_STR);  
+      $stmt->bindParam(':email', $email, PDO::PARAM_STR);  
+      $stmt->execute();
+
+      $chck = $stmt->fetch();
+      if ($chck) {
+        $register_err =  'Account already exists.';
+       }
+      else {
+        if(empty($register_err)){  
+          $sql = "INSERT INTO users (student_no,username,password,email) VALUES (:studentno,:username,:password,:email)";
+          
+          $stmt = $pdo -> prepare($sql);
+          $param_password = password_hash($password, PASSWORD_DEFAULT);
+          $stmt->bindParam(':studentno', $studentno, PDO::PARAM_STR);  
+          $stmt->bindParam(':username', $username, PDO::PARAM_STR); 
+          $stmt->bindParam(':password', $param_password, PDO::PARAM_STR); 
+          $stmt->bindParam(':email', $email, PDO::PARAM_STR); 
+          
+          if($stmt->execute()){
+            echo "<script type='text/javascript'>alert('Created Successfully.');</script>";
+            header("refresh:0.01;url= register.php");
+          } else{
+            echo "<script type='text/javascript'>alert('Oops! Something went wrong. Please try again later');</script>";
+          }
+      }
+      } 
+     
+    }
+
+
+
+    unset($stmt);
+    unset($pdo);
+}
+require_once 'includes/header.php'; 
+?>
 
 
   <!-- Content Wrapper. Contains page content -->
@@ -52,10 +138,11 @@
                   <i class="icon fas fa-exclamation-triangle"></i> We are implementing one account per user.
                 </div>
                 <h3 class="text-center p-2">Create an Account</h3>
-
-                <form action="#" method="post">
+                <p style="color:red" class="help-block text-center"><?php echo $register_err; ?></p>
+                <p style="color:red" class="help-block text-center"><?php echo $register_success; ?></p>
+                <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div class="input-group my-3">
-                    <input type="text" class="form-control" placeholder="Student No.">
+                    <input type="text" class="form-control" name="studentno" placeholder="Student No. (####-######)" required>
                     <div class="input-group-append">
                       <div class="input-group-text">
                         <span class="fas fa-hashtag"></span>
@@ -64,7 +151,7 @@
                  </div>
 
                  <div class="input-group my-3">
-                    <input type="text" class="form-control" placeholder="Username">
+                    <input type="text" class="form-control" name="username" placeholder="Username" required>
                     <div class="input-group-append">
                       <div class="input-group-text">
                         <span class="fas fa-user"></span>
@@ -73,7 +160,7 @@
                  </div>
 
                  <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="Email">
+                    <input type="email" class="form-control" name="email" placeholder="Email" required>
                     <div class="input-group-append">
                       <div class="input-group-text">
                         <span class="fas fa-envelope"></span>
@@ -82,7 +169,7 @@
                   </div>
  
                   <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="password" class="form-control" name="password" placeholder="Password" required>
                     <div class="input-group-append">
                       <div class="input-group-text">
                         <span class="fas fa-lock"></span>
@@ -92,13 +179,14 @@
                   <div class="row">
                   <div class="col-12">
                     <div class="icheck-primary">
-                      <input type="checkbox" id="agree">
+                      <input type="checkbox" id="agree" required>
                       <label for="agree">
                         I agree with the <a href="terms.php">Terms and Conditions</a>
                       </label>
                     </div>
                   </div>
                     <div class="col-12 pt-3">
+
                       <button type="submit" class="btn btn-danger btn-block">Register</button>
                     </div>
                   </div>

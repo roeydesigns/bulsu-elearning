@@ -1,4 +1,77 @@
-<?php require_once 'includes/header.php'; ?>
+<?php require_once 'includes/header.php';
+  $emailSET = false;
+  session_start();
+  if(!isset($_SESSION["loggedin"])){}
+
+ else if(isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true){
+   header("location: index.php");
+   exit;
+ }
+
+ 
+// Include config file
+require_once "config.php";
+// Define variables and initialize with empty values
+$email = "";
+$email_err = "";
+$studentno = "";
+$studentno_err = "";
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    // Check if email is empty
+    if(empty(trim($_POST["Email"]))){
+        $email_err= "Please enter a valid email.";
+    } else{
+        $email = trim($_POST["Email"]);
+    }
+
+        // Check if email is empty
+    if(empty(trim($_POST["StudentNo"]))){
+        $email_err= "Please enter a valid Student No.";
+    } else{
+        $studentno = trim($_POST["StudentNo"]);
+    }
+
+    // Validate credentials
+    if(empty($email_err) && empty($studentno_err)){
+        // Prepare a select statement
+        $sql = "SELECT id, email, student_no FROM users WHERE email = :email";
+               if($stmt = $pdo->prepare($sql)){
+            // Bind variables to the prepared statement as parameters
+            $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
+            // Set parameters
+            $param_email = trim($_POST["Email"]);
+            // Attempt to execute the prepared statement
+            if($stmt->execute()){
+                // Check if email exists
+                if($stmt->rowCount() == 1){
+                    if($row = $stmt->fetch()){
+                        $id = $row["id"];
+                        $emailR = $row["email"];
+                        $std = $row["student_no"];
+                        if($std == $studentno){
+                          header("location: change_pw.php?e=".$emailR ."&st=".$std);
+                        }
+                        else{
+                          $studentno_err = "Email and Student No. doesn't match";
+                      }
+
+                    }
+                } else{
+                    // Display an error message if email doesn't exist
+                    $email_err = "Email and Student No. doesn't match";
+                }
+            } else{
+              echo "<script type='text/javascript'>alert('Oops! Something went wrong. Please try again later.');</script>";
+            }
+        }
+        // Close statement
+       unset($stmt);
+    }
+     // Close connection
+    unset($pdo);
+}
+?>
 
 
   <!-- Content Wrapper. Contains page content -->
@@ -17,15 +90,24 @@
 
                 <form action="#" method="post">
                   <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="Email">
+                    <input type="email" class="form-control" name="Email" placeholder="Email">
                     <div class="input-group-append">
                       <div class="input-group-text">
                         <span class="fas fa-envelope"></span>
                       </div>
                     </div>
                   </div>
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="StudentNo" placeholder="Student No.">
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span class="fas fa-hashtag"></span>
+                      </div>
+                    </div>
+                  </div>
                   <div class="row">
-
+                  <span style="color:red" class="help-block pl-3"><?php echo $email_err; ?></span>
+                  <span style="color:red" class="help-block pl-3"><?php echo $studentno_err; ?></span>
                     <div class="col-12 pt-2">
                       <button type="submit" class="btn btn-primary btn-block">Request a new password</button>
                     </div>

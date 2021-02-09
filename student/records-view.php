@@ -1,4 +1,18 @@
-<?php require_once 'includes/header.php'; ?>
+<?php 
+// Initialize the session
+session_start();
+ 
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+  header("location: ../index.php");
+  exit;
+}
+if(!isset($_SESSION["isadmin"])){ }
+else if($_SESSION["isadmin"] == true){
+  header("location: ../index.php");
+  exit;
+}
+require_once 'includes/header.php';
+?>
 
     <!-- Main content -->
     <section class="content">
@@ -9,16 +23,16 @@
                 <div class="card-body box-profile">
                     <div class="text-center">
                     <img class="profile-user-img img-fluid img-circle"
-                        src="../dist/img/avatar5.png"
+                        src="<?php if ($entry->getUsrImg()==''){ echo '../dist/img/avatar5.png'; } else {echo $entry->getUsrImg(); }?>"
                         alt="User profile picture">
                     </div>
 
-                    <h3 class="profile-username text-center">June Vincent Cruz</h3>
+                    <h3 class="profile-username text-center"><?php echo $entry->getFName(); ?> <?php echo $entry->getMName(); ?> <?php echo $entry->getLName(); ?></h3>
                     <p class="text-muted text-center mb-1">Student</p>
-                    <p class="text-center m-0"><strong>2017-114895</strong></p>
-                    <a href="mailto:junesantos@gmail.com"><p  class="text-center">junesantos@gmail.com</p></a>
-                    <p class="text-center mt-4"><strong>Address</strong> <br>101 Purok 1 San Marcos, Calumpit, Bulacan</p>
-                    <p class="text-center mb-0"><strong>Mobile No.</strong> <br>09291234251</p>
+                    <p class="text-center m-0"><strong><?php echo $entry->getStNo(); ?></strong></p>
+                    <a href="mailto:<?php echo $entry->getEmail(); ?>"><p  class="text-center"><?php echo $entry->getEmail(); ?></p></a>
+                    <p class="text-center mt-4"><strong>Address</strong> <br><?php echo $entry->getAddress(); ?>, <?php echo $entry->getCity(); ?>, <?php echo $entry->getProvince(); ?> </p>
+                    <p class="text-center mb-0"><strong>Mobile No.</strong> <br><?php echo $entry->getPhone(); ?> </p>
                 </div>
                 <!-- /.card-body -->
                 </div>
@@ -28,7 +42,7 @@
 
         <div class="card">
             <div class="card-header">
-            <p class="card-title">Scores on Quizes/Exams of June Vincent Cruz</p>
+            <p class="card-title">Scores on Quizes/Exams of <?php echo $entry->getFName(); ?> <?php echo $entry->getMName(); ?> <?php echo $entry->getLName(); ?></p>
             </div>
             <div class="card-body p-0">
             <table class="table table-striped">
@@ -55,152 +69,82 @@
                     </tr>
                 </thead>
                 <tbody>
+                <?php 
+                require_once "../config.php";
+                $sql = "SELECT * FROM chapters WHERE chapter_type <> 'Chapter'";
+                $stmt = $pdo -> prepare($sql);
+                $stmt->execute();
+                $qqcount = 0;
+                foreach ($stmt as $row) {
+                  $qqcount++;
+
+                  $viewedsql = "SELECT * FROM lessonsviewed WHERE userId = '".$_SESSION['id']."' AND chapterId = '".$row['chapter_id']."' AND lessonId = '".$row['lesson_id']."'";
+                  $viewedstmt = $pdo -> prepare($viewedsql);
+                  $viewedstmt->execute();                  
+                  $viewedrow = $viewedstmt->fetch();
+                  
+                  $lesssql = "SELECT * FROM lessons WHERE lesson_id = '".$row['lesson_id']."'";
+                  $lessstmt = $pdo -> prepare($lesssql);
+                  $lessstmt->execute();                  
+                  $lessrow = $lessstmt->fetch();
+                 
+              ?>
                     <tr>
                         <td>
-                        <strong>1</strong>
+                        <strong><?php echo $qqcount; ?></strong>
                         </td>
                         <td>
-                        Lesson 1: Mysql Database
+                        <?php echo $lessrow['lesson_title'];?>
                         </td>
                         <td>
-                        <p class="m-0">Mysql Quiz 1</p>
+                        <p class="m-0"><?php echo $row['chapter_title'];?></p>
                         </td>
                         <td>
-                            Quiz
+                            <?php echo $row['chapter_type'];?>
                         </td>
                         <td>
-                            10/10
+                        <?php 
+                        $sqlgetScore = "SELECT * FROM quizchecking WHERE userId = '".$_SESSION['id']."' AND quizId = '".$row['chapter_id']."' AND lessonId = '".$row['lesson_id']."'";
+                        $stmtGetScore = $pdo -> prepare($sqlgetScore);
+                        $stmtGetScore->execute();                  
+                        $UserscoreTotalCount = 0;
+                        foreach ($stmtGetScore as $rowGetScore) {
+                          $UserscoreTotalCount = $UserscoreTotalCount + $rowGetScore['Score'];
+                        }
+                        
+                        $sqlgetQuest = "SELECT * FROM questions WHERE quiz_id = '".$row['chapter_id']."'";
+                        $stmtGetQuest = $pdo -> prepare($sqlgetQuest);
+                        $stmtGetQuest->execute();                  
+                        $QuestcoreTotalCount = 0;
+                        foreach ($stmtGetQuest as $rowGetQuest) {
+                          $QuestcoreTotalCount = $QuestcoreTotalCount + $rowGetQuest['question_point'];
+                        }
+                        ?>
+                        <?php 
+                            if ($viewedrow){
+                                echo $UserscoreTotalCount .'/' .$QuestcoreTotalCount;
+                               
+                               
+                            } else{
+                                
+                                echo 'Not Yet Taken';
+                            }
+                        ?>
+
                         </td>
-                        <td class="project-actions text-right">
-                            <a class="btn btn-block btn-info btn-sm" href="quiz-score.php">
+                        <td class="project-actions text-center">
+                            <?php if ($viewedrow){ ?>
+                            <a class="btn btn-info btn-sm" href="quiz-score.php?qid=<?php echo $row['chapter_id'];?>&lid=<?php echo $row['lesson_id'];?>&id=<?php echo $_SESSION['id'];?>">
                                 <i class="fas fa-eye">
                                 </i>
                                 View
                             </a>
+                            <?php } ?>
 
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                        <strong>2</strong>
-                        </td>
-                        <td>
-                        Lesson 2: PHP Programming
-                        </td>
-                        <td>
-                        <p class="m-0">Php Quiz 1</p>
-                        </td>
-                        <td>
-                            Quiz
-                        </td>
-                        <td>
-                            Not Yet Taken
-                        </td>
-                        <td class="project-actions text-right">
-                        <a class="btn btn-block btn-info btn-sm" href="quiz-score.php">
-                                <i class="fas fa-eye">
-                                </i>
-                                View
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        <strong>3</strong>
-                        </td>
-                        <td>
-                        Lesson 3: Programming Loops
-                        </td>
-                        <td>
-                        <p class="m-0">Loops Quiz 1</p>
-                        </td>
-                        <td>
-                            Quiz
-                        </td>
-                        <td>
-                            Not Yet Taken
-                        </td>
-                        <td class="project-actions text-right">
-                        <a class="btn btn-block btn-info btn-sm" href="quiz-score.php">
-                                <i class="fas fa-eye">
-                                </i>
-                                View
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        <strong>4</strong>
-                        </td>
-                        <td>
-                        Lesson 4: Arrays in Programming
-                        </td>
-                        <td>
-                        <p class="m-0">Arrays Quiz 1</p>
-                        </td>
-                        <td>
-                            Quiz
-                        </td>
-                        <td>
-                        Not Yet Taken
-                        </td>
-                        <td class="project-actions text-right">
-                        <a class="btn btn-block btn-info btn-sm" href="quiz-score.php">
-                                <i class="fas fa-eye">
-                                </i>
-                                View
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <strong>5</strong>
-                        </td>
-                        <td>
-                        Lesson 5: Math in Programming
-                        </td>
-                        <td>
-                        <p class="m-0">Programming Math Quiz 1</p>
-                        </td>
-                        <td>
-                            Quiz
-                        </td>
-                        <td>
-                            Not Yet Taken
-                        </td>
-                        <td class="project-actions text-right">
-                        <a class="btn btn-block btn-info btn-sm" href="quiz-score.php">
-                                <i class="fas fa-eye">
-                                </i>
-                                View
-                            </a>
-                        </td>
-                    </tr>
+                    <?php } ?>
 
-                    <tr>
-                        <td>
-                            <strong>6</strong>
-                        </td>
-                        <td>
-                        Lesson 1: Mysql Database
-                        </td>
-                        <td>
-                        <p class="m-0">Mysql Database Exam</p>
-                        </td>
-                        <td>
-                            Exam
-                        </td>
-                        <td>
-                            Not Yet Taken
-                        </td>
-                        <td class="project-actions text-right">
-                        <a class="btn btn-block btn-info btn-sm" href="quiz-score.php">
-                                <i class="fas fa-eye">
-                                </i>
-                                View
-                            </a>
-                        </td>
-                    </tr>
                     
                 </tbody>
             </table>
@@ -208,13 +152,7 @@
             <!-- /.card-body -->
         </div>
         <!-- /.card -->
-            <ul class="pagination float-right">
-                <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-            </ul>
+
     
         </div>
     </div>

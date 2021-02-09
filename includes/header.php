@@ -63,7 +63,7 @@
         <span class="brand-text font-weight-light"> BulSU iLearn</span>
       </a>
 
-      <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler order-1 ml-auto" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -82,23 +82,63 @@
           <li class="nav-item <?php if(basename($_SERVER["PHP_SELF"]) == "missionandvision.php" ) echo "active"; ?>">
             <a href="missionandvision.php" class="nav-link">Mission & Vision</a>
           </li>
+          <?php if(!isset($_SESSION["loggedin"]) && empty($_SESSION["loggedin"])){ ?>
           <li class="nav-item register-link <?php if(basename($_SERVER["PHP_SELF"]) == "register.php" ) echo "active"; ?>">
             <a href="register.php" class="nav-link">Create an Account</a>
           </li>
+          <?php } ?>
 
             </ul>
           </li>
         </ul>
 
       </div>
-
+<?php
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+  require_once 'classes/entry.php';
+  $entry = new Users();
+  $entry->SqlSelectEntryById($_SESSION["id"]);
+?>
+      <ul class="order-1 order-md-3 navbar-nav navbar-no-expand">
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+        <div class="user-block">
+          <img class="img-circle img-bordered-sm" src="<?php
+            if ($_SESSION["id"]=='1'){
+              if ($entry->getUsrImg()==''){ echo 'dist/img/avatar4.png'; }
+              else {echo $entry->getUsrImg(); }
+            }
+            else {
+              if ($entry->getUsrImg()==''){ echo 'dist/img/avatar5.png'; }
+              else {echo $entry->getUsrImg(); }
+            }
+              ?>" alt="user image">
+         </div>
+        </a>
+        <div class="dropdown-menu dropdown-menu-center">
+          <a href="  <?php  if ($_SESSION["id"]=='1'){ echo 'admin'; } else {echo 'student'; } ?>" class="dropdown-item">
+          <i class="nav-icon fas fa-tachometer-alt"></i> Dashboard
+          </a>
+          <a href="  <?php  if ($_SESSION["id"]=='1'){ echo 'admin'; } else {echo 'student'; } ?>/profile.php" class="dropdown-item">
+          <i class="nav-icon fas fa-user"></i> Profile
+          </a>
+          <a href="logout.php" class="dropdown-item">
+          <i class="nav-icon fas fa-sign-out-alt"></i> Logout
+          </a>
+        </div>
+      </li>
+      </ul>
+ 
+<?php 
+} else {
+?>     
       <!-- Right navbar links -->
       <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto home-nav-login">
         <li class="nav-create-account">
           <a class="btn btn-outline-danger" href="register.php">Create an Account</a>
         </li>
       </ul>
-
+      <?php } ?>     
     </div>
   </nav>
   <!-- /.navbar -->

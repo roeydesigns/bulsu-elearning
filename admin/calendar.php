@@ -16,7 +16,7 @@
                   <div id="external-events">
                     <div class="external-event bg-success">Exam</div>
                     <div class="external-event" style="background-color: #f39c12; color: #fff;">Lecture</div>
-                    <div class="external-event bg-info">eLearning Module</div>
+                    <div class="external-event bg-info">Learning Module</div>
                     <div class="external-event bg-primary">Reminders</div>
                     <div class="external-event bg-danger">Quiz</div>
                     <div class="checkbox">

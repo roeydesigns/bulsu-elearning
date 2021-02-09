@@ -1,4 +1,17 @@
-<?php require_once 'includes/header.php'; ?>
+<?php
+
+require_once '../classes/entry.php';
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["isadmin"]) || $_SESSION["isadmin"] == !true){
+    header("location: ../index.php");
+    exit;
+  }	
+require_once 'includes/header.php'; 
+
+?>
 
     <!-- Main content -->
     <section class="content">
@@ -12,16 +25,16 @@
           <table class="table table-striped">
               <thead>
                   <tr>
-                      <th style="width: 3%">
+                      <th style="width: 5%">
                           #
                       </th>
                       <th style="width: 25%">
                           Student Name
                       </th>
-                      <th style="width: 15%">
+                      <th style="width: 20%">
                           Student No.
                       </th>
-                      <th style="width: 15%">
+                      <th style="width: 25%">
                           Email
                       </th>
                       <th class="text-center"> 
@@ -30,167 +43,55 @@
                   </tr>
               </thead>
               <tbody>
+              <?php
+                    $sql = 'SELECT * FROM users WHERE id <> 1 ORDER BY user_firstname ASC';
+                    require_once('../classes/dbh.php');
+                    $dbh = new Dbh();
+                    $rows = $dbh->executeSelect($sql);
+
+                    $idcount = 0;
+                    foreach ($rows as $row) {
+                        
+                        $users = new Users();
+                        $users->setByRow($row);
+                        $idcount++;
+
+              ?>
                   <tr>
                       <td>
-                      <strong>1</strong>
+                      <strong><?php echo $idcount; ?></strong>
                       </td>
                       <td>
-                            June Vincent Cruz
+                      <?php echo $users->getFName(); ?> <?php echo $users->getMName(); ?> <?php echo $users->getLName(); ?>
                       </td>
                       <td>
-                      <p class="m-0">2017-114895</p>
+                      <p class="m-0"><?php echo $users->getStNo(); ?></p>
                       </td>
                       <td>
-                          <a href="mailto:junevcruz@gmail.com">junevcruz@gmail.com</a>
+                          <a href="mailto:<?php echo $users->getEmail(); ?>"><?php echo $users->getEmail(); ?></a>
                       </td>
                       <td class="project-actions text-right">
-                      <a class="btn btn-info btn-sm" href="students-view.php">
+                      <a class="btn btn-info btn-sm" href="students-view.php?id=<?php echo $users->getId(); ?>">
                               <i class="fas fa-address-book">
                               </i>
                               Records
                           </a>
-                          <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-key">
-                              </i>
-                              Reset Password
-                          </a>
 
-                          <a class="btn btn-danger btn-sm" href="#">
+                          <a href="profile-delete.php?id=<?php echo $users->getId(); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to deactivate this account?')">
                               <i class="fas fa-trash">
                               </i>
-                              Deactivate
-                          </a>
+                              Delete
+                        </a>
                       </td>
                   </tr>
-                  <tr>
-                      <td>
-                      <strong>2</strong>
-                      </td>
-                      <td>
-                        Natalie Mendoza
-                      </td>
-                      <td>
-                      <p class="m-0">2017-124845</p>
-                      </td>
-                      <td>
-                      <a href="mailto:nataliemendoza@gmail.com">nataliemendoza@gmail.com</a>
-                      </td>
-                      <td class="project-actions text-right">
-                      <a class="btn btn-info btn-sm" href="students-view.php">
-                              <i class="fas fa-address-book">
-                              </i>
-                              Records
-                          </a>
-                      <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-key">
-                              </i>
-                              Reset Password
-                          </a>
-
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Deactivate
-                          </a>
+                  <?php } if ($rows == false){ ?>
+                    <tr>
+                      <td colspan="5" class="text-center py-5">
+                             No users found.
                       </td>
                   </tr>
-                  <tr>
-                      <td>
-                      <strong>3</strong>
-                      </td>
-                      <td>
-                            Jennie Dungo
-                      </td>
-                      <td>
-                      <p class="m-0">2017-234665</p>
-                      </td>
-                      <td>
-                      <a href="mailto:jenniedungo@gmail.com">jenniedungo@gmail.com</a>
-                      </td>
-                      <td class="project-actions text-right">
-                      <a class="btn btn-info btn-sm" href="students-view.php">
-                              <i class="fas fa-address-book">
-                              </i>
-                              Records
-                          </a>
-                      <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-key">
-                              </i>
-                              Reset Password
-                          </a>
+                   <?php } ?>
 
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Deactivate
-                          </a>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>
-                      <strong>4</strong>
-                      </td>
-                      <td>
-                            Jose Dela Cerna
-                      </td>
-                      <td>
-                      <p class="m-0">2017-112355</p>
-                      </td>
-
-                      <td>
-                      <a href="mailto:josedelacerna@gmail.com">josedelacerna@gmail.com</a>
-                      </td>
-                      <td class="project-actions text-right">
-                      <a class="btn btn-info btn-sm" href="students-view.php">
-                              <i class="fas fa-address-book">
-                              </i>
-                              Records
-                          </a>
-                      <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-key">
-                              </i>
-                              Reset Password
-                          </a>
-
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Deactivate
-                          </a>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>
-                          <strong>5</strong>
-                      </td>
-                      <td>
-                            Juan Santos
-                      </td>
-                      <td>
-                      <p class="m-0">2017-154595 </p>
-                      </td>
-                      <td>
-                      <a href="mailto:junesantos@gmail.com">junesantos@gmail.com</a>
-                      </td>
-                      <td class="project-actions text-right">
-                      <a class="btn btn-info btn-sm" href="students-view.php">
-                              <i class="fas fa-address-book">
-                              </i>
-                              Records
-                          </a>
-                      <a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-key">
-                              </i>
-                              Reset Password
-                          </a>
-
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Deactivate
-                          </a>
-                      </td>
-                  </tr>
                   
               </tbody>
           </table>
@@ -198,16 +99,95 @@
         <!-- /.card-body -->
       </div>
       <!-- /.card -->
-        <ul class="pagination float-right">
-            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-        </ul>
 
     </section>
     <!-- /.content -->
 
+
+    
+    <!-- Main content -->
+    <section class="content py-5">
+
+      <!-- Default box -->
+      <div class="card card-outline card-danger">
+        <div class="card-header">
+          <p class="card-title">List of Deleted Students</p>
+        </div>
+        <div class="card-body p-0">
+          <table class="table table-striped">
+              <thead>
+                  <tr>
+                      <th style="width: 5%">
+                          #
+                      </th>
+                      <th style="width: 20%">
+                          Student Name
+                      </th>
+                      <th style="width: 20%">
+                          Student No.
+                      </th>
+                      <th style="width: 25%">
+                          Email
+                      </th>
+                      <th> 
+                          Username
+                      </th>
+                      <th> 
+                          Mobile No.
+                      </th>
+                  </tr>
+              </thead>
+              <tbody>
+              <?php
+                    require_once "../config.php";
+                    $sql = 'SELECT * FROM deletedusers WHERE id <> 1 ORDER BY user_firstname ASC';
+                    
+                    $stmt = $pdo -> prepare($sql);
+                    $stmt->execute();
+        
+                    $deletedidcount = 0;
+                    foreach ($stmt as $row) {
+
+                        $deletedidcount++;
+
+              ?>
+                  <tr>
+                      <td>
+                      <strong><?php echo $deletedidcount; ?></strong>
+                      </td>
+                      <td>
+                      <?php echo $row['user_firstname'];?> <?php echo $row['user_middlename'];?> <?php echo $row['user_lastname'];?>
+                      </td>
+                      <td>
+                      <p class="m-0"><?php echo $row['student_no'];?></p>
+                      </td>
+                      <td>
+                          <a href="mailto:<?php echo $row['email'];?>"><?php echo $row['email'];?></a>
+                      </td>
+                      <td >
+                             <?php echo $row['username'];?>
+                      </td>
+                      <td >
+                             <?php echo $row['phone'];?>
+                      </td>
+                  </tr>
+                  <?php } if ($deletedidcount == 0){ ?>
+                    <tr>
+                      <td colspan="6" class="text-center py-5">
+                             No deleted users found.
+                      </td>
+                  </tr>
+                   <?php } ?>
+
+                  
+              </tbody>
+          </table>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
 
 <?php require_once 'includes/footer.php'; ?>

@@ -1,4 +1,21 @@
-<?php require_once 'includes/header.php'; ?>
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+  header("location: ../index.php");
+  exit;
+}
+if(!isset($_SESSION["isadmin"])){ }
+else if($_SESSION["isadmin"] == true){
+  header("location: ../index.php");
+  exit;
+}
+require_once 'includes/header.php';
+
+?>
 
     <!-- Main content -->
     <section class="content px-3 pb-5">
@@ -6,28 +23,52 @@
       <div id="accordion">
         <div class="row">
 
+        <?php
+            require_once "../config.php";
+            $sql = 'SELECT * FROM lessons WHERE lesson_status <> "Unpublish" ORDER BY lesson_id ASC ';
+            
+            $stmt = $pdo -> prepare($sql);
+            $stmt->execute();
+
+
+            foreach ($stmt as $row) {
+          ?>
+
          <div class="col-lg-4">
-           <a href="lessons-view-index.php" style="color: #191919;">
+           <a href="lessons-view-index.php?id=<?php echo $row['lesson_id'];?>" style="color: #191919;">
           <div class="card">
-            <div class="card-header lessons-imgcard" style="background: url('https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?cs=srgb&dl=pexels-kevin-ku-577585.jpg&fm=jpg')">
-
-            </div>
-
+          <div class="card-header lessons-imgcard" style="background: url('<?php if($row['lesson_image']==''){ echo '../dist/img/default.jpg';}{} echo $row['lesson_image'];?>')">
+          </div>
             <div class="card-body">
-            <h3 class="pt-3">Lesson 1: Mysql Database</h3>
-              <p class="my-3">MySQL is a freely available open source Relational Database Management System (RDBMS) that
-                  uses Structured Query Language (SQL). SQL is the most popular language for adding, accessing
-                  and managing content in a database.</p>
-              <strong>Chapters: 6 | Quiz: 2 | Exam: 1</strong>
-
+            <h3 class="pt-3"><?php echo $row['lesson_title'];?></h3>
+              <p class="my-3"><?php echo $row['lesson_description'];?>.</p>
             </div>
             <div class="card-footer">
                   <div class="row" style="padding-left: 7.5px">
+                  <?php 
+                        $progresssql = "SELECT * FROM lessonsviewed WHERE userId = '".$_SESSION['id']."' AND lessonId = '".$row['lesson_id']."'" ;
+                        $progress = $pdo->prepare($progresssql);
+                        $progress->execute();
+                        $progress_count = $progress->rowCount();
+                        $progres_chaptersql = "SELECT * FROM chapters WHERE lesson_id = '".$row['lesson_id']."'" ;
+                        $progres_chapter = $pdo->prepare($progres_chaptersql);
+                        $progres_chapter->execute();
+                        $progres_chapter_count = $progres_chapter->rowCount();
+
+                        if($progress_count!=0 && $progres_chapter_count !=0 ){
+                          $percentage_value = ($progress_count/$progres_chapter_count)*100;
+                        }
+                        else {
+                          $percentage_value = 0;
+                        }
+
+                  ?>
                       <p>Progress:</p>
                       <div class="col-9 pt-1">
                         <div class="progress">
-                          <div class="progress-bar bg-success progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                            <span>60% Completed</span>
+                          <div class="progress-bar bg-success progress-bar" role="progressbar" aria-valuenow="<?php if(isset($percentage_value)){echo $percentage_value;}?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php if(isset($percentage_value)){echo $percentage_value;}?>%">
+                            
+                            <span><?php if(isset($percentage_value)){echo $percentage_value;}?>% Completed</span>
                           </div>
                         </div>  
                       </div>
@@ -36,78 +77,15 @@
           </div>
           </a>
         </div>
+    <?php } ?>
 
         
-        <div class="col-lg-4">
-           <a href="lessons-view-index.php" style="color: #191919;">
-          <div class="card">
-            <div class="card-header lessons-imgcard" style="background: url('https://images.pexels.com/photos/276452/pexels-photo-276452.jpeg?cs=srgb&dl=pexels-pixabay-276452.jpg&fm=jpg')">
 
-            </div>
-
-            <div class="card-body">
-            <h3 class="pt-3">Lesson 2: PHP Programming</h3>
-              <p class="my-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan id imperdiet et.</p>
-              <strong>Chapters: 4 | Quiz: 1 | Exam: 1</strong>
-
-            </div>
-            <div class="card-footer">
-                  <div class="row" style="padding-left: 7.5px">
-                      <p>Progress:</p>
-                      <div class="col-9 pt-1">
-                        <div class="progress">
-                          <div class="progress-bar bg-success progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-                            <span>0% Completed</span>
-                          </div>
-                        </div>  
-                      </div>
-                  </div>
-            </div>
-          </div>
-          </a>
-        </div>
-
-        
-        <div class="col-lg-4">
-           <a href="lessons-view-index.php" style="color: #191919;">
-          <div class="card">
-            <div class="card-header lessons-imgcard" style="background: url('https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940')">
-
-            </div>
-
-            <div class="card-body">
-            <h3 class="pt-3">Lesson 3: Programming Loops</h3>
-              <p class="my-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat, accumsan id imperdiet et.</p>
-              <strong>Chapters: 6 | Quiz: 1 | Exam: 1</strong>
-
-            </div>
-            <div class="card-footer">
-                  <div class="row" style="padding-left: 7.5px">
-                      <p>Progress:</p>
-                      <div class="col-9 pt-1">
-                        <div class="progress">
-                          <div class="progress-bar bg-success progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-                            <span>0% Completed</span>
-                          </div>
-                        </div>  
-                      </div>
-                  </div>
-            </div>
-          </div>
-          </a>
-        </div>
 
 
         </div>
       </div>
       
-      <ul class="pagination float-right">
-            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-        </ul>
 
     </section>
     <!-- /.content -->

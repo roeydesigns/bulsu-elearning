@@ -40,6 +40,10 @@
     display: none;
 }
 
+#cred-change-btn {
+    display: none;
+}
+
 @media (max-width: 768px) {
     .home-nav-login {
       display: none;

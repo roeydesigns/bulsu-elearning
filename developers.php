@@ -1,4 +1,7 @@
-<?php require_once 'includes/header.php'; ?>
+<?php
+// Initialize the session
+session_start();
+require_once 'includes/header.php'; ?>
 
 <div class="content-wrapper">
 

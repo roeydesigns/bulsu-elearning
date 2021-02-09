@@ -1,8 +1,75 @@
-<?php require_once 'includes/header.php'; ?>
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["isadmin"]) || $_SESSION["isadmin"] == !true){
+  header("location: ../index.php");
+  exit;
+}
 
+require_once 'includes/header.php';
+require_once "../config.php";
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+    if ($_GET['id'] == 1){
+       //Form data
+          $aboutTitle = $_POST['aboutTitle'];
+          $aboutContent = $_POST['aboutContent'];
+
+          $sql = "UPDATE settings SET title = :aboutTitle,
+          content = :aboutContent
+          WHERE id = '".$_GET['id']."'";
+
+          $stmt = $pdo -> prepare($sql);
+
+          $stmt->bindParam(':aboutTitle', $aboutTitle, PDO::PARAM_STR);  
+          $stmt->bindParam(':aboutContent', $aboutContent, PDO::PARAM_STR);  
+
+          if($stmt->execute()){
+            echo "<script type='text/javascript'>alert('Successfully changed About Page');</script>";
+           
+          } else{
+            echo "<script type='text/javascript'>alert('Oops! Something went wrong. Please try again later.');</script>";
+          }
+    }
+
+    else if ($_GET['id'] == 2){
+      //Form data
+         $mvTitle = $_POST['mvTitle'];
+         $mvContent = $_POST['mvContent'];
+
+         $sql = "UPDATE settings SET title = :mvTitle,
+         content = :mvContent
+         WHERE id = '".$_GET['id']."'";
+
+         $stmt = $pdo -> prepare($sql);
+
+         $stmt->bindParam(':mvTitle', $mvTitle, PDO::PARAM_STR);  
+         $stmt->bindParam(':mvContent', $mvContent, PDO::PARAM_STR);  
+
+         if($stmt->execute()){
+           echo "<script type='text/javascript'>alert('Successfully changed Mission and Vision Page');</script>";
+          
+         } else{
+          echo "<script type='text/javascript'>alert('Oops! Something went wrong. Please try again later.');</script>";
+         }
+   }
+
+}
+
+?>
+<?php
+      $aboutsql = 'SELECT * FROM settings WHERE id = 1 ';
+      $stmt = $pdo -> prepare($aboutsql);
+      $stmt->execute();
+      foreach ($stmt as $row) {
+?>
     <!-- Main content -->
     <section class="content">
         <!-- /.row -->
+      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>?id=<?php echo $row['id'];?>" method="post">
         <div class="card card-primary card-outline">
           <div class="card-header">
             <h3 class="card-title">
@@ -15,17 +82,14 @@
                  <div class="col-12">
                     <div class="form-group">
                         <label for="inputLessonTitle">About Page Title</label>
-                          <input type="text" class="form-control" id="inputLessonTitle" placeholder="About Page Title" value="About Us"> 
+                          <input type="text" name="aboutTitle" class="form-control" id="inputLessonTitle" placeholder="About Page Title" value=" <?php echo $row['title'];?>"> 
                     </div>
                  </div>
                   <div class="col-md-12">
                      <div class="form-group">
                         <label>Content</label>
-                        <textarea id="summernote" rows="3" style="z-index: 999;">
-                        <div class="text-justify px-5">
-                  <p><b>BULACAN STATE UNIVERSITY (BulSU)</b> is the premiere state-operated institution of higher learning in the Cenral Luzon region. It originated as a secondary school run by the Americans in 1904, and has now progressed into one of the biggest educational institutions in Region III. <b>BulSU</b> was converted from a college into a University in 1993 by virtue of Republic Act 7665. Since then, <b>BulSU</b> has grown by leaps and bounds, in terms of program offerings, faculty qualification, and student enrolment. It is the vision of the University to be a knowledge-generating institution globally recognized for excellent instruction, pioneering research, and responsive community engagement. The University has also maintained the existence of four external campuses within the province namely Meneses Campus, Hagonoy Campus, Sarmiento Campus, and Bustos Campus</p>
-                  <p>The University has been consistently producing highly professional, ethical, and service-oriented individuals who perform well in board examinations with impressive results consistently exceeding the National Passing Rate and become potent driving force in the industries in the region and beyond. <b>BulSU</b> has recently received its <b>ISO 9001:2015 Certification</b>, passed the Level II Institutional Accreditation while 50 academic programs of the different Colleges are already accredited by the Accrediting Agency of Chartered Colleges and Universities (AACCUP), Inc. This was made possible through the persistent hardwork and resolute service of its <b>1,138 faculty members and 476 non-teaching personnel</b> who relentlessly cater and furnish the needs of our <b>35,958 students.</b></p>
-                </div>
+                        <textarea id="summernote" name="aboutContent" rows="3" style="z-index: 999;">
+                        <?php echo $row['content'];?>
                         </textarea>
                      </div>
                    </div>
@@ -35,22 +99,33 @@
         <!-- /.card -->
         <div class="card-footer clearfix">
           <div class="float-right">
-            <a class="btn btn-success" href="lessons.php">Change</a>
+            <button type="submit" class="btn btn-success">Change</button>
           </div>
         </div>
     </div>
+  </form>
     </section>
     <!-- /.content -->
 
+    <?php } ?>
 
+    <?php
+      $mvsql = 'SELECT * FROM settings WHERE id = 2 ';
+      
+      $stmt = $pdo -> prepare($mvsql);
+      $stmt->execute();
+      foreach ($stmt as $row) {
+
+?>
     <!-- Main content -->
     <section class="content">
         <!-- /.row -->
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>?id=<?php echo $row['id'];?>" method="post">
         <div class="card card-primary card-outline">
           <div class="card-header">
             <h3 class="card-title">
               <i class="fas fa-edit"></i>
-              Edit Mission & Vision Page
+              Edit Mission & Vision Page 
             </h3>
           </div>
           <div class="card-body">
@@ -58,40 +133,14 @@
                  <div class="col-12">
                     <div class="form-group">
                         <label for="inputLessonTitle">Mission & Vision Page Title</label>
-                          <input type="text" class="form-control" id="inputLessonTitle" placeholder="Mission & Vision Page Title" value="Vision, Mission and Goals"> 
+                          <input type="text" name="mvTitle" class="form-control" id="inputLessonTitle" placeholder="Mission & Vision Page Title" value="<?php echo $row['title'];?>"> 
                     </div>
                  </div>
                   <div class="col-md-12">
                      <div class="form-group">
                         <label>Content</label>
-                        <textarea id="mvgsummernote" rows="3" style="z-index: 999;">
-                        <div class="col-9 mx-auto">
-                    <h4><strong>Vision</strong></h4>
-                        <p class="text-justify">
-                            Bulacan State University is a progressive knowledge-generating institution globally recognized for excellent instruction, pioneering research, and responsive community engagements
-                        </p>
-                    <hr>
-                    
-                    <h4><strong>Mission</strong></h4>
-                        <p class="text-justify">
-                            Bulacan State University exists to produce highly competent, ethical and service-oriented professionals that contribute to the sustainable socio-economic growth and development of the nation
-                        </p>
-                    <hr>
-                    
-                    <h4><strong>Goals</strong></h4>
-                        <p class="text-justify">
-                            In the pursuit of its mission, the initiatives and efforts of the University are geared towards the attainment of the following goals:
-
-</p><ol type="1">
-<li><strong>Quality and Excellence.</strong> Promoting quality and relevant educational programs that meet international standards.</li>
-<li><strong>Relevance and Responsiveness.</strong> Generation and dissemination of knowledge in the broad range of disciplines relevant and responsive to the dynamically changing domestic and international environments.</li>
-<li><strong>Access and Equity.</strong> Broadening the access of deserving and qualified students to educational opportunities.</li>
-<li><strong>Efficiency and Effectiveness.</strong> Optimizing of social, institutional and individual returns and benefits derived from the utilization of higher education resources.</li>
-</ol>
-                        <p></p>
-                    <hr>
-                                </div>
-                </div>
+                        <textarea id="mvgsummernote" name="mvContent" rows="3" style="z-index: 999;">
+                        <?php echo $row['content'];?>
                         </textarea>
                      </div>
                    </div>
@@ -101,12 +150,13 @@
         <!-- /.card -->
         <div class="card-footer clearfix">
           <div class="float-right">
-            <a class="btn btn-success" href="lessons.php">Change</a>
+            <button type="submit" class="btn btn-success" >Change</button>
           </div>
         </div>
     </div>
+    </form>
     </section>
     <!-- /.content -->
 
-    
+    <?php } ?>
 <?php require_once 'includes/footer.php'; ?>

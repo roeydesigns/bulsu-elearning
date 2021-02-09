@@ -202,7 +202,7 @@ $(document).ready(function(){
             return false;
     }   
     document.getElementById("QremoveBtn").style.display = "inline-block";
-    $("#Qchoices").append('<div class="input-group pt-2" id="QchoicesDiv' + counter + '"><div class="input-group-prepend"><span class="input-group-text"><input type="radio"></span></div><input type="text" class="form-control" placeholder="Choice Description"></div>')
+    $("#Qchoices").append('<div class="input-group pt-2" id="QchoicesDiv' + counter + '"><div class="input-group-prepend"><span class="input-group-text"><input id="QchoicesCheck' + counter + '" name="questionChoicesCheckbox' + counter + '" type="hidden" value ="0"><input type="checkbox" id="QchoicesCheck' + counter + '" value ="1" name="questionChoicesCheckbox' + counter + '"></span></div><input type="text" id="QchoicesDesc' + counter + '" name="questionChoicesDescription[]" class="form-control" placeholder="Choice Description"></div>')
                 
     counter++;
      });
@@ -220,9 +220,9 @@ $(document).ready(function(){
         $("#QchoicesDiv" + counter).remove();
             
      });
-        
 
   });
+
 </script>
 
 <?php }?>
@@ -292,9 +292,11 @@ $(document).ready(function(){
       }
     });
 
+
     var calendar = new Calendar(calendarEl, {
+      editable: true,
+      events: "fetch-calendar.php",
       selectable: true,
-      selectHelper: true,
       headerToolbar: {
         left  : 'prev,next today',
         center: 'title',
@@ -302,76 +304,82 @@ $(document).ready(function(){
       },
         select: function(info) {
          var evventTitle = prompt ('('+info.startStr + ' to ' + info.endStr+')'+'Event Title:');
+          if(evventTitle){
+            $.ajax({
+                url: "add-calendar.php",
+                type: "POST",
+                dataType:'json',
+                data: {
+                  title: evventTitle,
+                  start: info.startStr,
+                  end: info.endStr,
+                  color: '#007bff'
+                },
+                success: function(data){
+                 
+                }
+            });
+            location.reload();
+          }
+         
         },
-        eventClick: function (event) {
-          var deleteMsg = confirm("Do you really want to delete this event?");    
+        eventDrop: function (info) {
+          $.ajax({
+                url: "update-calendar.php",
+                type: "POST",
+                dataType:'json',
+                data: {
+                  id: info.event.id,
+                  title: info.event.title,
+                  start: info.event.startStr,
+                  end: info.event.endStr,
+                  color: info.event.backgroundColor
+                },
+                success: function(data){
+                 
+                }
+            });
+            location.reload();
+         },
+        eventClick: function (info) {
+
+          var deleteMsg = confirm("Do you really want to delete this event?");  
+ 
+          if(deleteMsg){
+            $.ajax({
+                url: "delete-calendar.php",
+                type: "POST",
+                dataType:'json',
+                data: {
+                  id: info.event.id
+                },
+                success: function(data){
+                 
+                }
+            });
+            location.reload();
+          }
         },
       themeSystem: 'bootstrap',
-      
-      //Random default events
-      events: [
-        {
-          title          : 'Quiz',
-          start          : new Date(y, m, 1),
-          backgroundColor: '#dc3545', //red
-          borderColor    : '#dc3545', //red
-          allDay         : true
-        },
-        {
-          title          : 'Lecture',
-          start          : new Date(y, m, d-5),
-          allDay         : true,
-          backgroundColor: '#f39c12', //yellow
-          borderColor    : '#f39c12' //yellow
-        },
-        {
-          title          : 'Lecture',
-          start          : new Date(y, m, d-2),
-          allDay         : true,
-          backgroundColor: '#f39c12', //yellow
-          borderColor    : '#f39c12' //yellow
-        },
-        {
-          title          : 'Lecture',
-          start          : new Date(y, m, d-1),
-          allDay         : true,
-          backgroundColor: '#f39c12', //yellow
-          borderColor    : '#f39c12' //yellow
-        },
-        {
-          title          : 'Lecture',
-          start          : new Date(y, m, d),
-          allDay         : true,
-          backgroundColor: '#f39c12', //Blue
-          borderColor    : '#f39c12' //Blue
-        },
-        {
-          title          : 'Lecture',
-          start          : new Date(y, m, d + 2),
-          allDay         : true,
-          backgroundColor: '#f39c12', //Blue
-          borderColor    : '#f39c12' //Blue
-        },
 
-        {
-          title          : 'Exam',
-          start          : new Date(y, m, d + 1, 19, 0),
-          end            : new Date(y, m, d + 1, 22, 30),
-          allDay         : false,
-          backgroundColor: '#00a65a', //Success (green)
-          borderColor    : '#00a65a' //Success (green)
-        },
-
-      ],
-      editable  : true,
-      droppable : true, // this allows things to be dropped onto the calendar !!!
-      drop      : function(info) {
-        // is the "remove after drop" checkbox checked?
-        if (checkbox.checked) {
-          // if so, remove the element from the "Draggable Events" list
-          info.draggedEl.parentNode.removeChild(info.draggedEl);
-        }
+      eventReceive: function(info) {
+           $.ajax({
+                url: "add-calendar.php",
+                type: "POST",
+                dataType:'json',
+                data: {
+                  title: info.event.title,
+                  start: info.event.startStr,
+                  end: info.event.endStr,
+                  color: info.event.backgroundColor
+                },
+                success: function(data){
+                 
+                }
+            });
+            location.reload();
       }
+
     });
 
     calendar.render();
@@ -423,6 +431,189 @@ $(document).ready(function(){
 <!-- jQuery UI 1.11.4 -->
 <script src="../plugins/jquery-ui/jquery-ui.min.js"></script>
 <script src="../dist/js/pages/dashboard.js"></script>
+<script>
+$(document).ready(function() {
+	$('#ToDoListBtn').on('click', function() {
+
+      var Todolist_Input = prompt('Input your To Do List: ');
+
+    if (Todolist_Input =='' || Todolist_Input == null){
+    }
+    else{
+			$.ajax({
+				url: "todolist-save.php",
+				type: "POST",
+        dataType:'json',
+				data: {
+          todolist_content: Todolist_Input			
+				},
+				success: function(dataResult){
+          location.reload();
+				},
+        complete: function(dataResult){
+          location.reload();
+				},
+			});
+    }
+	});
+
+
+});
+
+function chckbxTdlist(tdlistId,tdlistChck) {
+    var todolistId = tdlistId;
+    var checkIfchecked = tdlistChck;
+    if (checkIfchecked=='uncheck'){
+			$.ajax({
+				url: "todolist-check.php",
+				type: "POST",
+        dataType:'json',
+				data: {
+          todolist_check: 'check',
+          todolist_id: todolistId
+				},
+				success: function(dataResult){
+				},
+			});
+    }
+    else if (checkIfchecked=='check') {
+			$.ajax({
+				url: "todolist-check.php",
+				type: "POST",
+        dataType:'json',
+				data: {
+          todolist_check: '',
+          todolist_id: todolistId
+				},
+				success: function(dataResult){ 
+				},
+			});
+    }
+	}
+
+  function tdlistChangeCntnt(tdlistId) {
+    var todolistId = tdlistId;
+    var Todolist_Input = prompt('Input your To Do List: ');
+
+      if (Todolist_Input =='' || Todolist_Input == null){
+      }
+      else{
+        $.ajax({
+          url: "todolist-edit.php",
+          type: "POST",
+          dataType:'json',
+          data: {
+            todolist_id: todolistId,
+            todolist_content: Todolist_Input
+          },
+          success: function(dataResult){
+            location.reload();
+          },
+          complete: function(dataResult){
+            location.reload();
+          },
+        });
+      }
+	}
+
+  function tdlistDelete(tdlistId) {
+    var todolistId = tdlistId;
+
+			$.ajax({
+				url: "todolist-delete.php",
+				type: "POST",
+        dataType:'json',
+				data: {
+          todolist_id: todolistId
+				},
+				success: function(dataResult){
+          location.reload();
+				},
+        complete: function(dataResult){
+          location.reload();
+				},
+			});
+	}
+
+</script>
 <?php }?>
+
+<?php if(basename($_SERVER["PHP_SELF"]) == "profile.php" ) { ?>
+<script>
+$("#EditCred").click(function () {
+  document.getElementById("cred-change-btn").style.display = "inline-block";
+  document.getElementById('inputUsername').disabled = false;
+  document.getElementById('inputEmail').disabled = false;
+  document.getElementById("EditCred").style.display = "none";
+});
+
+</script>
+<?php }?>
+<script>
+    function ImguploadFunc(){
+      document.getElementById('lessonImg').innerHTML  = document.getElementById('lessonImgInput').value;
+    }
+
+    function ProfImgUpload() {
+      document.getElementById("fileProfileImgUpload").click();
+    }
+
+    function fileImgUpload() {
+      document.fileImgUploadForm.submit();
+      event.preventDefault();
+    }
+    
+    function chapterViewed(userId,chapterId,lessonId) {
+
+			$.ajax({
+				url: "chapter-viewed.php",
+				type: "POST",
+        dataType:'json',
+				data: {
+          userId: userId,
+          chapterId: chapterId,
+          lessonId: lessonId,
+          viewed: 'viewed'
+				},
+				success: function(dataResult){
+				},
+			});
+    
+    }
+
+    function quizCheck(inputID,questionID,lessonID,quizID,qPoint){
+      shortAnswerVal = $(inputID).val();
+      var chckBtn= confirm('Are you sure you with your answer? Once you confirm you cannot go back to change your answer.');
+      if (chckBtn){
+        $.ajax({
+				url: "quiz-checking.php",
+				type: "POST",
+        dataType:'json',
+				data: {
+          questionid: questionID,
+          lessonid: lessonID,
+          quizid: quizID,
+          shortAnswerValue: shortAnswerVal,
+          questionPoint: qPoint
+				},
+				success: function(dataResult){
+				},
+			});
+      }
+      else {
+        event.preventDefault();
+      }
+    }
+
+    function quizRadioClick(radiobtnID){
+      $('#multiAns').val($(radiobtnID).val());
+        
+    }
+
+    function dragTest(){
+      alert('tetest');
+    }
+
+</script>
 </body>
 </html>

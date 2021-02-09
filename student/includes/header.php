@@ -43,6 +43,16 @@
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+<?php 
+    require_once '../classes/entry.php';
+    $entry = new Users();
+    $entry->SqlSelectEntryById($_SESSION['id']);
+
+    if(basename($_SERVER["PHP_SELF"])!='profile.php' && ($entry->getFName()=='' || $entry->getMName()=='' || $entry->getLName()=='' || $entry->getEmail()=='' || $entry->getPhone()=='' || $entry->getAddress()=='' || $entry->getCity()=='' || $entry->getProvince()=='' || $entry->getGender()=='' || $entry->getUsername()=='' || $entry->getStNo()=='')){
+      echo "<script type='text/javascript'>alert('Warning! Your Profile is not set up yet. Please set up your account first. Redirecting you to Profile Page Now.');</script>"; 
+      echo '<script> location.replace("profile.php"); </script>';
+    }
+?>
 <div class="wrapper">
 
 <!-- Navbar -->
@@ -76,7 +86,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="../index.php" role="button">
+      <a class="nav-link" href="../logout.php" role="button">
         <i class="fas fa-sign-out-alt"></i>
       </a>
     </li>
@@ -98,10 +108,10 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="../dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
+        <img src="<?php if ($entry->getUsrImg()==''){ echo '../dist/img/avatar5.png'; } else {echo $entry->getUsrImg(); }?>" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="profile.php" class="d-block"><b>June Vincent</b> - Student</a>
+        <a href="profile.php" class="d-block"><b><?php echo $entry->getFName(); ?></b> - Student</a>
       </div>
     </div>
 
@@ -149,7 +159,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="../index.php" class="nav-link">
+          <a href="../logout.php" class="nav-link">
             <i class="nav-icon fas fa-sign-out-alt"></i>
             <p>Logout</p>
           </a>

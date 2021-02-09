@@ -1,4 +1,16 @@
-<?php require_once 'includes/header.php'; ?>
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["isadmin"]) || $_SESSION["isadmin"] == !true){
+  header("location: ../index.php");
+  exit;
+}
+
+require_once 'includes/header.php';
+
+?>
 
     <!-- Main content -->
     <section class="content">
@@ -37,210 +49,75 @@
                   </tr>
               </thead>
               <tbody>
-                  <tr>
-                      <td>
-                      <strong>1</strong>
-                      </td>
-                      <td>
-                          <a>
-                              Lesson 1: Mysql Database
-                          </a>
-                          <br/>
-                          <small>
-                          Created 01.01.2021
-                          </small>
-                      </td>
-                      <td>
-                      <p class="m-0">MySQL is a freely available open source Relational Database Management System (RDBMS) that uses Structured Query ... </p>
-                      </td>
-                      <td class="project-state">
-                          <span class="badge badge-success">Published</span>
-                      </td>
-                      <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="lessons-view-index.php">
-                              <i class="fas fa-eye">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="lessons-edit.php">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>
-                      <strong>2</strong>
-                      </td>
-                      <td>
-                          <a>
-                            Lesson 2: PHP Programming
-                          </a>
-                          <br/>
-                          <small>
-                          Created 01.01.2021
-                          </small>
-                      </td>
-                      <td>
-                      <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat,
-                         accumsan id imperdiet et, porttitor at sem. </p>
-                      </td>
-                      <td class="project-state">
-                          <span class="badge badge-success">Published</span>
-                      </td>
-                      <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="lessons-view-index.php">
-                              <i class="fas fa-eye">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="lessons-edit.php">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>
-                      <strong>3</strong>
-                      </td>
-                      <td>
-                          <a>
-                          Lesson 3: Programming Loops
-                          </a>
-                          <br/>
-                          <small>
-                          Created 01.01.2021
-                          </small>
-                      </td>
-                      <td>
-                      <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat,
-                         accumsan id imperdiet et, porttitor at sem. </p>
-                      </td>
-                      <td class="project-state">
-                          <span class="badge badge-success">Published</span>
-                      </td>
-                      <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="lessons-view-index.php">
-                              <i class="fas fa-eye">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="lessons-edit.php">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td>
-                      <strong>4</strong>
-                      </td>
-                      <td>
-                          <a>
-                          Lesson 4: Arrays in Programming
-                          </a>
-                          <br/>
-                          <small>
-                          Created 01.01.2021
-                          </small>
-                      </td>
-                      <td>
-                      <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat,
-                         accumsan id imperdiet et, porttitor at sem. </p>
-                      </td>
+              <?php
+                     require_once "../config.php";
+                    $sql = 'SELECT * FROM lessons ORDER BY lesson_id ASC ';
+                    
+                    $stmt = $pdo -> prepare($sql);
+                    $stmt->execute();
+                    $idcount = 0;
 
-                      <td class="project-state">
-                          <span class="badge badge-success">Published</span>
-                      </td>
-                      <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="lessons-view-index.php">
-                              <i class="fas fa-eye">
-                              </i>
-                              View
-                          </a>
-                          <a class="btn btn-info btn-sm" href="lessons-edit.php">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="#">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a>
-                      </td>
-                  </tr>
+                    foreach ($stmt as $row) {
+              ?>
                   <tr>
                       <td>
-                          <strong>5</strong>
+                      <strong><?php $idcount++; echo $idcount; ?></strong>
                       </td>
                       <td>
                           <a>
-                            Lesson 5: Math in Programming
+                             <?php echo $row['lesson_title'];?>
                           </a>
                           <br/>
                           <small>
-                              Created 01.01.2021
+                          Created <?php echo $row['created_at'];?>
                           </small>
                       </td>
                       <td>
-                      <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur arcu erat,
-                         accumsan id imperdiet et, porttitor at sem. </p>
+                      <p class="m-0"><?php echo $row['lesson_description'];?> </p>
                       </td>
                       <td class="project-state">
-                          <span class="badge badge-danger">Unpublished</span>
+                         <?php if($row['lesson_status']=="Publish"){ ?>
+                            <span class="badge badge-success">Published</span>
+
+                        <?php } else if($row['lesson_status']=="Unpublish"){ ?>
+                            <span class="badge badge-danger">Unpublished</span>
+                        <?php } ?>
+                          
                       </td>
                       <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="lessons-view-index.php">
+                          <a class="btn btn-primary btn-sm" href="lessons-view-index.php?id=<?php echo $row['lesson_id'];?>">
                               <i class="fas fa-eye">
                               </i>
                               View
                           </a>
-                          <a class="btn btn-info btn-sm" href="lessons-edit.php">
+                          <a class="btn btn-info btn-sm" href="lessons-edit.php?id=<?php echo $row['lesson_id'];?>">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Edit
                           </a>
-                          <a class="btn btn-danger btn-sm" href="#">
+                          <a class="btn btn-danger btn-sm" href="lessons-delete.php?id=<?php echo $row['lesson_id'];?>" onclick="return confirm('Are you sure you want to delete this lesson?')" >
                               <i class="fas fa-trash">
                               </i>
                               Delete
                           </a>
                       </td>
                   </tr>
-                  
+
+                  <?php } if ($idcount == 0){ ?>
+                    <tr>
+                      <td colspan="5" class="text-center py-5">
+                             No lessons found.
+                      </td>
+                  </tr>
+                   <?php } ?>
+
               </tbody>
           </table>
         </div>
         <!-- /.card-body -->
       </div>
       <!-- /.card -->
-        <ul class="pagination float-right">
-            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-        </ul>
+
 
     </section>
     <!-- /.content -->

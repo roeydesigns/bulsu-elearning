@@ -10,40 +10,5 @@
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
-<script>
-
-$("#loginBTN").click(function () {
-      var emailuser = document.getElementById("emailuserInput").value;
-      var passinput = document.getElementById("passwordInput").value;
-
-      if (emailuser == '' || emailuser == '' || passinput == ''){
-        document.getElementById("alertLogininfo").style.display = "block";
-        document.getElementById("alertLogininfo").innerHTML = "Some input fields are empty. Fillup the fields first before you can  login.";
-      }
-      else if (emailuser == 'admin' || emailuser == 'admin@admin.com'){
-        if (passinput == '1234'){
-          document.location.href="admin"; 
-        }
-        else {
-          document.getElementById("alertLogininfo").style.display = "block";
-          document.getElementById("alertLogininfo").innerHTML = "Wrong Username or Password. Try again.";
-        }
-      }
-      else if (emailuser == 'student' || emailuser == 'junevcruz@gmail.com'){
-        if (passinput == '1234'){
-          document.location.href="student"; 
-        }
-        else {
-          document.getElementById("alertLogininfo").style.display = "block";
-          document.getElementById("alertLogininfo").innerHTML = "Wrong Username or Password. Try again.";
-        }
-      }
-      else {
-          document.getElementById("alertLogininfo").style.display = "block";
-          document.getElementById("alertLogininfo").innerHTML = "Wrong Username or Password. Try again.";
-        }
-            
-     });
-</script>
 </body>
 </html>

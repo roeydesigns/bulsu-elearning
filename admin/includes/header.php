@@ -43,6 +43,11 @@
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+<?php 
+    require_once '../classes/entry.php';
+    $entry = new Users();
+    $entry->SqlSelectEntryById('1');
+?>
 <div class="wrapper">
 
 <!-- Navbar -->
@@ -76,7 +81,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="../index.php" role="button">
+      <a class="nav-link" href="../logout.php" role="button">
         <i class="fas fa-sign-out-alt"></i>
       </a>
     </li>
@@ -98,10 +103,10 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="../dist/img/avatar4.png" class="img-circle elevation-2" alt="User Image">
+        <img src="<?php if ($entry->getUsrImg()==''){ echo '../dist/img/avatar4.png'; } else {echo $entry->getUsrImg(); }?> " class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="profile.php" class="d-block"><b>Juan</b> - Admin</a>
+        <a href="profile.php" class="d-block"><b><?php echo $entry->getFName(); ?></b> - Admin</a>
       </div>
     </div>
 
@@ -156,7 +161,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="../index.php" class="nav-link">
+          <a href="../logout.php" class="nav-link">
             <i class="nav-icon fas fa-sign-out-alt"></i>
             <p>Logout</p>
           </a>

@@ -1,5 +1,36 @@
-<?php require_once 'includes/header.php'; ?>
+<?php require_once '../classes/entry.php';
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["isadmin"]) || $_SESSION["isadmin"] == !true){
+  header("location: ../index.php");
+  exit;
+}
+require_once "../config.php";
+$users_sql = 'SELECT * FROM users WHERE id <> 1 ORDER BY id';
+$users = $pdo->prepare($users_sql);
+$users->execute();
+$users_count = $users->rowCount();
 
+$lessons_sql = 'SELECT * FROM lessons';
+$lessons = $pdo->prepare($lessons_sql);
+$lessons->execute();
+$lessons_count = $lessons->rowCount();
+
+$exam_sql = 'SELECT * FROM chapters WHERE chapter_type = "Exam"' ;
+$exam = $pdo->prepare($exam_sql);
+$exam->execute();
+$exams_count = $exam->rowCount();
+
+$quiz_sql = 'SELECT * FROM chapters WHERE chapter_type = "Quiz"' ;
+$quiz = $pdo->prepare($quiz_sql);
+$quiz->execute();
+$quiz_count = $quiz->rowCount();
+
+ require_once 'includes/header.php'; 
+
+?>
 
     <!-- Main content -->
     <section class="content">
@@ -10,7 +41,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3><?php echo $users_count; ?></h3>
 
                 <p>Students Registered</p>
               </div>
@@ -25,7 +56,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53</h3>
+                <h3><?php echo $quiz_count; ?></h3></h3>
 
                 <p>Quizes Created</p>
               </div>
@@ -40,7 +71,7 @@
             <!-- small box -->
             <div class="small-box bg-purple">
               <div class="inner">
-                <h3>44</h3>
+                <h3><?php echo $exams_count; ?></h3></h3>
 
                 <p>Exams Created</p>
               </div>
@@ -55,7 +86,7 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h3><?php echo $lessons_count; ?></h3>
 
                 <p>Lessons Created</p>
               </div>
@@ -98,117 +129,43 @@
                 </h3>
 
                 <div class="card-tools">
-                   <button type="button" class="btn btn-sm btn-info float-right"><i class="fas fa-plus"></i> Add item</button>
+                   <button type="button" id="ToDoListBtn" class="btn btn-sm btn-info float-right"><i class="fas fa-plus"></i> Add item</button>
                 </div>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
                 <ul class="todo-list" data-widget="todo-list">
+                <?php
+                    $sql = "SELECT * FROM todolist WHERE user_id = '".$_SESSION['id']."'";
+                    $stmt = $pdo -> prepare($sql);
+                    $stmt->execute();
+                    $idcounter = 0;
+                    foreach ($stmt as $row) {
+                      $idcounter++;
+                ?>
                   <li>
-                    <!-- drag handle -->
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
+                  
+
                     <!-- checkbox -->
                     <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo1" id="todoCheck1" checked>
-                      <label for="todoCheck1"></label>
+                      <input type="checkbox" value="<?php echo $row['todolist_id'];?>" onclick="return chckbxTdlist(<?php echo $row['todolist_id'];?>,<?php if($row['todolist_check']=='check'){echo '\'check\'';} else {echo '\'uncheck\'';} ?>)" name="todo[]" id="todoCheck<?php echo $idcounter;?>" <?php if($row['todolist_check']=="check"){echo 'checked';} ?>>
+                      <label for="todoCheck<?php echo $idcounter;?>"></label>
                     </div>
                     <!-- todo text -->
-                    <span class="text">Create Lesson 1, Chapter 1</span>
+                    <span class="text" onclick="tdlistChangeCntnt(<?php echo $row['todolist_id'];?>)"><?php echo $row['todolist_content'];?></span>
                     <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
+                      <i class="fas fa-trash" onclick="tdlistDelete(<?php echo $row['todolist_id'];?>)"></i>
                     </div>
                   </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo2" id="todoCheck2" checked>
-                      <label for="todoCheck2"></label>
+                  <?php } if ($idcounter == 0){ ?>
+                  <div  class="icheck-primary d-inline ml-2">
+                      <p class="text-center py-5">No To Do List Yet.</p>
                     </div>
-                    <span class="text">Create Lesson 1, Chapter 2</span>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo3" id="todoCheck3">
-                      <label for="todoCheck3"></label>
-                    </div>
-                    <span class="text">Create Lesson 1, Chapter 3</span>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo4" id="todoCheck4">
-                      <label for="todoCheck4"></label>
-                    </div>
-                    <span class="text">Create Quiz about Mysql</span>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo5" id="todoCheck5">
-                      <label for="todoCheck5"></label>
-                    </div>
-                    <span class="text">Create Lesson 2, Chapter 1</span>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="handle">
-                      <i class="fas fa-ellipsis-v"></i>
-                      <i class="fas fa-ellipsis-v"></i>
-                    </span>
-                    <div  class="icheck-primary d-inline ml-2">
-                      <input type="checkbox" value="" name="todo6" id="todoCheck6">
-                      <label for="todoCheck6"></label>
-                    </div>
-                    <span class="text">Create Lesson 2, Chapter 2</span>
-                    <div class="tools">
-                      <i class="fas fa-edit"></i>
-                      <i class="fas fa-trash-o"></i>
-                    </div>
-                  </li>
+                <?php }?>
                 </ul>
               </div>
               <!-- /.card-body -->
               <div class="card-footer clearfix">
-              <ul class="pagination pagination-sm float-right">
-                    <li class="page-item"><a href="#" class="page-link">&laquo;</a></li>
-                    <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                    <li class="page-item"><a href="#" class="page-link">2</a></li>
-                    <li class="page-item"><a href="#" class="page-link">3</a></li>
-                    <li class="page-item"><a href="#" class="page-link">&raquo;</a></li>
-                  </ul>
-
               </div>
             </div>
 

@@ -1,4 +1,56 @@
-<?php require_once 'includes/header.php'; ?>
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is logged in, if not then redirect him to login page
+if(!isset($_SESSION["isadmin"]) || $_SESSION["isadmin"] == !true){
+  header("location: ../index.php");
+  exit;
+}
+
+require_once 'includes/header.php';
+
+require_once "../config.php";
+
+if(!isset($_GET['id']) || !isset($_GET['lid'])){
+  echo '<script> location.replace("lessons.php"); </script>';
+  exit;
+}
+
+$sql = "SELECT * FROM chapters WHERE chapter_id = '".$_GET['id']."' AND lesson_id = '".$_GET['lid']."'";
+$stmt = $pdo -> prepare($sql);
+$stmt->execute();
+
+foreach ($stmt as $row) {
+
+
+  $userId = $_SESSION['id'];
+  $chapterId = $_GET['id'];
+  $lessonId = $_GET['lid'];
+  $viewed = 'viewed';
+
+  $vwsql = "SELECT * FROM lessonsviewed WHERE userId = '".$_SESSION['id']."' AND chapterId = '".$_GET['id']."' AND lessonId = '".$_GET['lid']."' AND viewed = 'viewed'";
+  $vwstmt = $pdo -> prepare($vwsql);
+  $vwstmt->execute();                  
+  $vwrow = $vwstmt->fetch();
+  if($vwrow){}
+
+  else {
+
+      $inssql = "INSERT INTO lessonsviewed (userId, chapterId, lessonId, viewed) 
+      VALUES (:userId,:chapterId,:lessonId,:viewed)";
+
+      $insstmt = $pdo -> prepare($inssql);
+
+      $insstmt->bindParam(':userId', $userId, PDO::PARAM_INT);  
+      $insstmt->bindParam(':chapterId', $chapterId, PDO::PARAM_INT);  
+      $insstmt->bindParam(':lessonId', $lessonId, PDO::PARAM_INT);  
+      $insstmt->bindParam(':viewed', $viewed, PDO::PARAM_STR); 
+
+      $insstmt->execute();
+  }
+
+?>
 
     <!-- Main content -->
     <section class="content">
@@ -6,7 +58,7 @@
         <div class="card card-primary card-outline">
           <div class="card-header">
             <h3 class="card-title">
-              Chapter 2: What is Databases
+              <?php echo $row['chapter_title'];?>
             </h3>
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="maximize">
@@ -15,36 +67,29 @@
             </div>
           </div>
           <div class="card-body">
-          <h3>What is a Database?</h3><p>A database is a structured collection of data that is used by the application systems
-of some given enterprise, and that is managed by a database management system.
-For the purpose of this course, think of a database as a collection of tables which
-are connected to each other. IT Learning Programme (ITLP) in the University of
-Oxford offers a course on how to design a database. This course is a pre-requisite
-to this course. However, if you did not attend the database designing course, please
-read the following paragraphs.
-As we mentioned, a database is a collection of tables. Each table is similar to a
-spreadsheet table in which each row is called a record and each column is called a
-field. For example, if we need to create a table that contains students’ information,
-we might have the following fields</p><table class="table table-bordered"><tbody><tr><td><h3>St_ID</h3></td><td><h3>St_Name</h3></td><td><h3>St_DateOfBirth</h3></td><td><h3>St_Email</h3></td></tr></tbody></table><p><span style="font-size: 1rem;"><br></span></p><p><span style="font-size: 1rem;">Data can be entered to this table so you can get the following table</span></p><table class="table table-bordered"><tbody><tr><td>St_ID<br></td><td>St_Name<br></td><td>St_DateOfBirth<br></td><td>St_Email<br></td></tr><tr><td>45215<br></td><td>John Smith<br></td><td>21/5/1995<br></td><td>jsmith@ox.ac.uk<br></td></tr><tr><td>45287<br></td><td>Alison Green&nbsp;<br></td><td>5/11/1994<br></td><td>agreen@ox.ac.uk<br></td></tr><tr><td>48652<br></td><td>Thomas Li<br></td><td>18/7/1998&nbsp;<br></td><td>tli@ox.ac.uk<br></td></tr><tr><td>51420<br></td><td>Susan Bailey<br></td><td>14/1/1991<br></td><td>sbailey@ox.ac.uk<br></td></tr><tr><td>52201<br></td><td>Will King<br></td><td>3/3/1997<br></td><td>wking@ox.ac.uk<br></td></tr></tbody></table><p><span style="font-size: 1rem;"><br></span>Although this table contains students’ information, it does not contain each
-student’s grades. This is fine because the grades have to appear in a different table
-to reduce data redundancy. This is called database normalisation. The grades
-table might look like&nbsp;</p><table class="table table-bordered"><tbody><tr><td>Grade_ID<br></td><td>St_ID<br></td><td>Course_ID<br></td><td>Grade_Value<br></td><td>Comments&nbsp;<br></td></tr></tbody></table><h3><br></h3><h6>Databases: MySQL introduction</h6><p>Notice how the Grades table is linked to the Students table via St_ID which
-appears in both tables. The field St_ID in the Students table is acting as the
-primary key which is a unique id to identify each record in the table. The field
-St_ID in the Grades table is called the foreign key and it links to a primary key in
-a different table. You might have noticed that there is a field called Course_ID in
-the Grades table which is another foreign key to identify a grade’s course. This
-means that there must be another table that contains data for different courses.
-Form the previous simple example you should now have an idea of what we mean
-by a database. It is important to understand the following concepts: database,
-table, record, field, primary key, foreign key and data normalisation. Next sections
-will build on this and focus on SQL and how to use it to build a complete database
-using MySQL.<br></p>
+           <?php echo $row['chapter_content'];?>
           </div>
         <div class="card-footer clearfix">
           <div class="float-right">
-          <a class="btn btn-secondary" href="#">Back</a>
-            <a class="btn btn-success" href="#">Next</a>
+
+          <?php
+            $sql = "SELECT * FROM chapters WHERE chapter_id < '".$_GET['id']."' AND lesson_id = '".$_GET['lid']."' AND chapter_type = 'Chapter' ORDER BY chapter_id DESC";
+            $stmt = $pdo -> prepare($sql);
+            $stmt->execute();                  
+            $row = $stmt->fetch();
+            if($row){ ?>
+                      <a class="btn btn-secondary" onclick="return chapterViewed(<?php echo $_SESSION['id'];?>,<?php echo $_GET['id'];?>,<?php echo $_GET['lid'];?>)" href="lessons-view.php?id=<?php echo $row['chapter_id'];?>&lid=<?php echo $_GET['lid'];?>">Back</a>
+              <?php } ?>
+
+            <?php
+            $sql = "SELECT * FROM chapters WHERE chapter_id > '".$_GET['id']."' AND lesson_id = '".$_GET['lid']."' AND chapter_type = 'Chapter' ORDER BY chapter_id ASC";
+            $stmt = $pdo -> prepare($sql);
+            $stmt->execute();                  
+            $row = $stmt->fetch();
+            if($row){ ?>
+                <a class="btn btn-success" onclick="return chapterViewed(<?php echo $_SESSION['id'];?>,<?php echo $_GET['id'];?>,<?php echo $_GET['lid'];?>)" href="lessons-view.php?id=<?php echo $row['chapter_id'];?>&lid=<?php echo $_GET['lid'];?>">Next</a>
+              <?php } ?>
+
           </div>
         </div>
         <!-- /.card -->
@@ -53,5 +98,5 @@ using MySQL.<br></p>
     </section>
     <!-- /.content -->
 
-
+    <?php } ?>
 <?php require_once 'includes/footer.php'; ?>

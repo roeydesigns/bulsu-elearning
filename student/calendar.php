@@ -1,4 +1,19 @@
-<?php require_once 'includes/header.php'; ?>
+<?php
+
+// Initialize the session
+session_start();
+ 
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+  header("location: ../index.php");
+  exit;
+}
+if(!isset($_SESSION["isadmin"])){ }
+else if($_SESSION["isadmin"] == true){
+  header("location: ../index.php");
+  exit;
+}
+require_once 'includes/header.php';
+ ?>
 
 
     <!-- Main content -->
