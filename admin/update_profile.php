@@ -20,6 +20,11 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
 
 
 require_once "../config.php";
+if(strlen(trim($_POST["Firstname"])) == 0 || strlen(trim($_POST["Middlename"])) == 0 || strlen(trim($_POST["Lastname"])) == 0 || strlen(trim($_POST["Gender"])) == 0){
+  echo "<script type='text/javascript'>alert('Error! please don\'t leave empty spaces.');</script>";
+  header("refresh:0.01;url= profile.php");
+  exit();
+}
  //Form data
 $fname = $_POST['Firstname'];
 $mname = $_POST['Middlename'];

@@ -153,6 +153,10 @@ class Users {
         return $this->user_image;
     }
 
+    public function getPass(){
+        return $this->password;
+    }
+
 }
 
 

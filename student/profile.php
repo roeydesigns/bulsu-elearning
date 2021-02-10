@@ -15,12 +15,22 @@ else if($_SESSION["isadmin"] == true){
 }
 
 require_once "../config.php";
-
+require_once '../classes/entry.php';
+$entry = new Users();
+$entry->SqlSelectEntryById($_SESSION['id']);
 // Define variables and initialize with empty values
-$new_password = $confirm_password = "";
-$new_password_err = $confirm_password_err = "";
+$new_password = $confirm_password = $current_password = "";
+$new_password_err = $confirm_password_err = $current_password_err = "";
+
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+  if(empty(trim($_POST["current_password"]))){
+    $current_password_err = "Error! Please enter your current password.";    
+    echo "<script type='text/javascript'>alert('$current_password_err');</script>"; 
+  } elseif(password_verify(trim($_POST["current_password"]), $entry->getPass())==false){
+    $current_password_err = "Error! you input wrong password.";    
+    echo "<script type='text/javascript'>alert('$current_password_err');</script>"; 
+  }
 
     // Validate new password
     if(empty(trim($_POST["new_password"]))){
@@ -46,7 +56,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
  // Check input errors before updating the database
-    if(empty($new_password_err) && empty($confirm_password_err)){
+    if(empty($new_password_err) && empty($confirm_password_err) && empty($current_password_err)){
         // Prepare an update statement
         $sql = "UPDATE users SET password = :password WHERE id = :id";
         if($stmt = $pdo->prepare($sql)){
@@ -189,6 +199,12 @@ require_once 'includes/header.php';
                   <div class="tab-pane" id="password">
                     <p class="text-center">You can update your password information here.</p>
                     <form class="form-horizontal" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                    <div class="form-group row">
+                        <label for="inputCurrentPassword" class="col-sm-2 col-form-label">Current Password</label>
+                        <div class="col-sm-10">
+                          <input type="password" name="current_password" class="form-control" id="inputCurrentPassword" placeholder="Current Password">
+                        </div>
+                      </div>
                       <div class="form-group row">
                         <label for="inputPassword" class="col-sm-2 col-form-label">New Password</label>
                         <div class="col-sm-10">

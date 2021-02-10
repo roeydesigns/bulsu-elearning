@@ -17,6 +17,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if(empty(trim($_POST["studentno"]))){
         $register_err = "Please enter a valid student no.";
+    } elseif(strlen(trim($_POST["studentno"])) < 11){
+      $register_err = "Please enter a valid student no.";
     } else{
         $studentno = trim($_POST["studentno"]);
     }
@@ -41,6 +43,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
       $password = trim($_POST["password"]);
     }
+
 
 
     if(empty($register_err)){  

@@ -77,7 +77,7 @@ require_once 'includes/header.php';
                               Records
                           </a>
 
-                          <a href="profile-delete.php?id=<?php echo $users->getId(); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to deactivate this account?')">
+                          <a href="profile-delete.php?id=<?php echo $users->getId(); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this account?')">
                               <i class="fas fa-trash">
                               </i>
                               Delete

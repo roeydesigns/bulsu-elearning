@@ -23,6 +23,12 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
   exit;
 }
 
+if(strlen(trim($_POST["StdNo"])) == 0 || strlen(trim($_POST["Username"])) == 0 || strlen(trim($_POST["Email"])) == 0){
+  echo "<script type='text/javascript'>alert('Error! please don\'t leave empty spaces.');</script>";
+  header("refresh:0.01;url= profile.php");
+  exit();
+}
+
 
 require_once "../config.php";
  //Form data

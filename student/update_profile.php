@@ -22,6 +22,12 @@ if($_SERVER["REQUEST_METHOD"] != "POST"){
   exit;
 }
 
+if(strlen(trim($_POST["Firstname"])) == 0 || strlen(trim($_POST["Middlename"])) == 0 || strlen(trim($_POST["Lastname"])) == 0 || strlen(trim($_POST["Gender"])) == 0 || strlen(trim($_POST["Address"])) == 0 || strlen(trim($_POST["City"])) == 0 || strlen(trim($_POST["Province"])) == 0 || strlen(trim($_POST["Phone"])) == 0){
+  echo "<script type='text/javascript'>alert('Error! please don\'t leave empty spaces.');</script>";
+  header("refresh:0.01;url= profile.php");
+  exit();
+}
+
 
 require_once "../config.php";
  //Form data
